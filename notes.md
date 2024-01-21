@@ -4,6 +4,7 @@
 # ec2
 ### URL
     http://52.73.14.26
+    http://basketflyer.com
 
 ### Command to connect to server from console
     ssh -i ~/Documents/cs260/cs260.pem ubuntu@52.73.14.26
