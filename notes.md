@@ -11,3 +11,7 @@
 
 # Console
     I learned that you can use "less" to see live activity of a file. You can also use functions within the console which is so cool. We even used a for loop!
+
+# HTTPS
+    You can access the Caddyfile using vi Caddyfile to enter in your domain name and create a secure connection to your website. ":wq" saves file that you are working on.
+    "sudo caddy service restart" restarts the file and starts running your domain with secure connections.
