@@ -3,11 +3,17 @@
 
 # ec2
 ### URL
-    http://52.73.14.26
-    http://basketflyer.com
+    https://basketflyer.com
 
 ### Command to connect to server from console
-    ssh -i ~/Documents/cs260/cs260.pem ubuntu@52.73.14.26
+    ssh -i ~/Documents/cs260/cs260.pem ubuntu@basketflyer.com
 
 # Console
     I learned that you can use "less" to see live activity of a file. You can also use functions within the console which is so cool. We even used a for loop!
+
+# HTTPS
+    You can access the Caddyfile using vi Caddyfile to enter in your domain name and create a secure connection to your website. ":wq" saves file that you are working on.
+    "sudo caddy service restart" restarts the file and starts running your domain with secure connections.
+
+# HTML
+    On youtube their is an option to embed the video to a website and all you have to do is copy it into your html. 
