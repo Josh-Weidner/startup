@@ -27,9 +27,15 @@
         .rotate-image {
             transform: rotate(-0.25turn);
             width: 200px;
-            height: 200px;
+            height: 190px;
             object-fit: cover;
             object-position: 0 -90px;
+        }
+        .flip-image {
+            width: 100px;
+            height: 100px;
+            transform: scaleX(-1);
+            object-position: 0 10px;
         }
     </style>
 
@@ -41,7 +47,7 @@
           <tr>
             <th></th>
             <th></th>
-            <th></th>
+            <th><img src="https://www.shutterstock.com/image-vector/pixel-art-hand-reach-palm-260nw-2258352199.jpg" class="flip-image"></img></th>
             <th></th>
           </tr>
         </thead>
@@ -57,12 +63,6 @@
             <td></td>
             <td></td>
             <td><img src="https://img.freepik.com/premium-vector/basketball-will-go-into-hoop-with-pixel-art-design_744913-673.jpg?w=1800" class="rotate-image"></img></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Lee</td>
-            <td>23</td>
-            <td>January 30, 2024</td>
           </tr>
         </tbody>
       </table>
