@@ -46,3 +46,13 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - As each user plays and reaches new high scores, their scores are broadcast to all other users.
 - **React** - Application ported to use the React web framework.
 
+## HTML deliverable
+
+For this deliverable I built out the structure of my application using HTML.
+
+- **HTML pages** - Three HTML pages that represent structures in order to login, play, and view the leaderboard.
+- **Links** - The login button requires a username and password and takes you to the game itself. Each page has links to the other pages.
+- **Text** - Directions are given on the play now screen. Along with the current score text on the play now screen.
+- **Images** - I use images from third party websites for the basketball, hoop, and hand.
+- **DB/Login** - Input box and submit button for login. The Leaderboard represents data pulled from the database.
+- **WebSocket** - The recent scores under the leaderboard represent the scores of realtime players.
