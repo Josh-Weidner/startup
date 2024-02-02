@@ -17,3 +17,7 @@
 
 # HTML
     On youtube their is an option to embed the video to a website and all you have to do is copy it into your html. 
+
+## Command to Deliver Code to Domain
+    ./deployFiles.sh -k ~/Documents/cs260/cs260.pem -h basketflyer.com -s startup
+    The last element in this command routes the deliverable to startup on the domain: startup.basketflyer.com.
