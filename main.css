@@ -1,0 +1,28 @@
+* {
+
+}
+
+html {
+    height: 100%;
+}
+
+head {
+
+}
+
+main {
+    height: 100%;
+    flex: 1;
+}
+
+input {
+   display: flex;
+   flex-direction: column;
+
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
