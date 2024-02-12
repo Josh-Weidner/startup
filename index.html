@@ -11,17 +11,21 @@
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>BasketFlyer<sup>&reg;</sup></h1>
+      <h1><img src=BasketFlyer.png width=170px></h1>
 
       <!-- Navigation elements -->
       <nav>
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
-          <li>
+          <div class="div">
             <a href="index.html">Login</a>
+          </div>
+          <div class="div">
             <a href="basketflyer.html">Play Now</a>
+          </div>
+          <div class="div">
             <a href="leaderboard.html">Leaderboard</a>
-          </li>
+          </div>
           <!-- <li><a href="about.html">About</a></li> -->
         </menu>
       </nav>
@@ -31,7 +35,28 @@
     </header>
 
     <main>
-      <h1 class="center">Welcome</h1>
+      <div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+</div>
+      <h2 class="center">Welcome</h2>
       <p class="center">Login to play</p>
       <form class="center" method="get" action="basketflyer.html">
         <input type="text" id="name" placeholder="Name" required/>
