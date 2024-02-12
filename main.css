@@ -15,7 +15,7 @@ header {
 	flex: .25;
 	flex-direction: column;
 	align-items: center;
-	height: 200px;
+	height: auto;
 	background: #275C75;
 }
 
@@ -32,12 +32,13 @@ nav {
 	width: 100%;
 	justify-content: center;
 	align-items: center;
+	background: grey;
+	box-shadow: 0px 4px 3px rgb(62, 60, 60);
 }
 
 menu {
 	display: flex;
 	flex: 1;
-	background: grey;
 	width: 100%;
 	justify-content: center;
 	align-items: center;
@@ -62,12 +63,54 @@ a {
 	font-size: 25px;
 }
 
+a:hover {
+	color: black;
+}
+
 main {
 	display: flex;
 	flex: 1;
 	height: 100%;
 	align-items: center;
 	justify-content: center;
+}
+
+.login {
+	background: rgba(128, 128, 128, 0.795);
+	height: 50%;
+	width: 50%;
+	border-radius: 25px;
+	border: 1px solid black;
+	color: white;
+	box-shadow: 4px 4px 3px rgb(62, 60, 60);
+}
+
+h2 {
+	font-size: 40px;
+	font-family: arial, sans-serif;
+}
+
+input {
+	margin: 5px;
+	padding: 5px;
+	width: 40%;
+	border-radius: 10px;
+}
+
+button {
+	box-shadow: 4px 4px 3px rgb(62, 60, 60);
+}
+
+.center {
+	text-align: center;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50%;
+	flex-direction: column;
 }
 
 #background-wrap {
