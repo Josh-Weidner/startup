@@ -2,97 +2,128 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scores</title>
+    <title>BasketFlyer HTML</title>
     <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Basketflyer<sup>&reg;</sup></h1>
+      <div><img src=BasketFlyer.png></div>
 
+      <!-- Navigation elements -->
       <nav>
+        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
-          <li>
-            <a href="index.html">Home</a>
+          <div class="div">
+            <a href="index.html">Login</a>
+          </div>
+          <div class="div">
             <a href="basketflyer.html">Play Now</a>
+          </div>
+          <div class="div">
             <a href="leaderboard.html">Leaderboard</a>
-          </li>
+          </div>
+          <!-- <li><a href="about.html">About</a></li> -->
         </menu>
       </nav>
 
-      <hr />
+      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
     </header>
 
     <main>
-      <h1>Leaderboard</h1>
+      <div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Josh Weidner</td>
-            <td>34</td>
-            <td>December 30, 2023</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Austin Wright</td>
-            <td>33</td>
-            <td>December 29, 2023</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Lee</td>
-            <td>23</td>
-            <td>January 30, 2024</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
 
-      <h2>Recent Scores</h2>
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Josh Weidner</td>
-            <td>10</td>
-            <td>January 30, 2024</td>
-          </tr>
-          <tr>
-            <td>Austin Wright</td>
-            <td>5</td>
-            <td>January 30, 2024</td>
-          </tr>
-          <tr>
-            <td>Lee</td>
-            <td>23</td>
-            <td>January 30, 2024</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
 
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+</div>
+<div class="login">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Joshua Weidner</span>
+      <span class="text-reset">Josh Weidner</span>
       <br />
-      <a href="https://github.com/Josh-Weidner">GitHub</a>
+      <a href="https://github.com/Josh-Weidner/startup">GitHub</a>
     </footer>
   </body>
 </html>
