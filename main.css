@@ -86,7 +86,7 @@ p {
 
 .login {
 	background: rgba(128, 128, 128, 0.795);
-	height: 50%;
+	height: auto;
 	width: 50%;
 	border-radius: 25px;
 	border: 1px solid black;
@@ -111,6 +111,7 @@ input {
 
 button {
 	box-shadow: 4px 4px 3px rgb(62, 60, 60);
+	margin: 5px;
 }
 
 .center {
@@ -132,10 +133,19 @@ table {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
+	padding-left: none;
+	padding-right: 65px;
+	padding-top: 10px;
 }
-
-thead {
-	width: auto;
+td {
+	padding: 5px;
+	column-width: 150px;
+}
+th {
+	column-width: 150px;
+	padding: 5px;
+	text-align: center;
 }
 
 #background-wrap {
