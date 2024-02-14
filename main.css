@@ -87,7 +87,7 @@ p {
 .login {
 	background: rgba(128, 128, 128, 0.795);
 	height: auto;
-	width: 50%;
+	width: auto;
 	border-radius: 25px;
 	border: 1px solid black;
 	color: white;
