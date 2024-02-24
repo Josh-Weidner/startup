@@ -57,3 +57,14 @@ For this deliverable I built out the structure of my application using HTML.
 - **3rd party Service** Invalid (Backend email verification)
 - **DB/Login** - Input box and submit button for login. The Leaderboard represents data pulled from the database.
 - **WebSocket** - The recent scores under the leaderboard represent the scores of realtime players.
+
+## CSS deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body**
+- **Navigation elements** - I turned the navigation bar into a thick grey bar that spreads out the page links.
+- **Responsive to window resizing** - My app looks great on all window sizes and devices
+- **Application elements** - Used good contrast and whitespace, that is consistant on all pages.
+- **Application text content** - Consistent fonts.
+- **Application images** - I used a logo that I generated in place of the game name on the top of the screens.

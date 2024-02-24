@@ -21,3 +21,6 @@
 ## Command to Deliver Code to Domain
     ./deployFiles.sh -k ~/Documents/cs260/cs260.pem -h basketflyer.com -s startup
     The last element in this command routes the deliverable to startup on the domain: startup.basketflyer.com.
+
+## CSS
+    If you want a specific type of styling you can most likely find it on google open source. It is good etiquete to have on main.css and other css depending on the needs of the additional pages.
