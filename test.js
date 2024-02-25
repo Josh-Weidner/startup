@@ -1,17 +1,18 @@
-
 // import kaboom lib
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
-// initialize kaboom context
-kaboom();
-
-
+kaboom()
 
 loadSprite("background", "clouds.jpeg.webp");
 loadSprite("basketball", "basketball.png")
 loadSprite("hoop", "hoop.png")
 
+scene("instructions", () => {
+
+})
+
 scene("game", () => {
+
     add([
         sprite("background"),
         scale(3.3,3.8),
@@ -53,7 +54,6 @@ scene("game", () => {
 
     basketball.onCollide("hoop", () => {
         score = score + 1;
-        go("lose", score);
     });
 
     onUpdate(() => {
@@ -62,15 +62,8 @@ scene("game", () => {
 });
 
 scene("lose", (score) => {
-    add([
-        text(score),
-        pos(width() / 2, height() / 2 + 80),
-        scale(2),
-        anchor("center"),
-    ]);
 
-    onKeyPress("up", () => go("game"));
-    onKeyPress("down", () => go("game"));
+    window.location.replace("basketflyer.html");
 
 });
 
