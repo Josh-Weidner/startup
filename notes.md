@@ -51,3 +51,8 @@
 
 ## CSS
     If you want a specific type of styling you can most likely find it on google open source. It is good etiquete to have on main.css and other css depending on the needs of the additional pages.
+    Combinator	Meaning	Example	Description
+    When selecting elements to apply styling you can use [parent] [descendant] or 
+    [parent] > [direct child] or 
+    [element sibling] ~ [element sibling] or 
+    [element sibling] + [adjecent element sibling]
