@@ -56,3 +56,4 @@
     [parent] > [direct child] or 
     [element sibling] ~ [element sibling] or 
     [element sibling] + [adjecent element sibling]
+    You can also select and element plus its class using [element].[class]
