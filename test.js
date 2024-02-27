@@ -71,14 +71,14 @@ scene("game", () => {
     onUpdate(() => {
         scoreLabel.text = "Score: " + score;
         localStorage.setItem("latestScore", score);
+        if (score > localStorage.getItem('highScore')) {
+            localStorage.setItem('highScore', score)
+        }
     });
 
 });
 
 scene("lose", (score) => {
-    if (score > highScore) {
-        localStorage.setItem('highScore', score)
-    }
     window.location.replace("basketflyer.html");
 
 });

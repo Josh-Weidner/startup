@@ -1,6 +1,7 @@
 document.onkeydown = checkKey;
 
 document.querySelector(".latest").innerHTML = localStorage.getItem('latestScore');
+document.querySelector(".high").innerHTML = localStorage.getItem('highScore');
 
 function checkKey(e) {
 
