@@ -1,12 +1,14 @@
 // import kaboom lib
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
-kaboom()
+kaboom({
+    background: [39, 92, 117] // The RGB code
+  })
 
-loadSprite("background", "clouds.jpeg.webp");
-loadSprite("basketball", "basketball.png")
-loadSprite("hoop", "hoop.png")
-loadSprite("wall", "wall.png.webp") 
+loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
+loadSprite("basketball", "Startup-IMG/basketball.png")
+loadSprite("hoop", "Startup-IMG/hoop.png")
+loadSprite("wall", "Startup-IMG/wall.png.webp") 
 
 if (localStorage.getItem('player') !== null) {
     localStorage.setItem("latestScore3", localStorage.getItem("latestScore2"));
@@ -25,12 +27,12 @@ const highScore3 = parseInt(localStorage.getItem('highScore3')) || 0;
 
 scene("game", () => {
 
-    add([
-        sprite("background"),
-        scale(3.3,3.8),
-        pos(0, 0),
-        "wall"
-    ]);
+    // add([
+    //     sprite("background"),
+    //     scale(3.3,3.8),
+    //     pos(0, 0),
+    //     "wall"
+    // ]);
 
     const wall = add([
         sprite("wall"),
