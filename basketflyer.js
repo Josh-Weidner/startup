@@ -1,4 +1,4 @@
-if (localStorage.getItem('latestScore1') >= 0) {
+if (localStorage.getItem('latestScore1') !== null) {
     document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latestScore1');
     document.querySelector(".high").innerHTML = "High Score: " + localStorage.getItem('highScore1');
 }

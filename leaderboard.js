@@ -1,6 +1,12 @@
 document.querySelector(".highscore1").innerHTML = localStorage.getItem('highScore1');
+document.querySelector(".highPlayer1").innerHTML = localStorage.getItem('highPlayer1');
 document.querySelector(".highscore2").innerHTML = localStorage.getItem('highScore2');
+document.querySelector(".highPlayer2").innerHTML = localStorage.getItem('highPlayer2');
 document.querySelector(".highscore3").innerHTML = localStorage.getItem('highScore3');
+document.querySelector(".highPlayer3").innerHTML = localStorage.getItem('highPlayer3');
 document.querySelector(".latestscore1").innerHTML = localStorage.getItem('latestScore1');
+document.querySelector(".player1").innerHTML = localStorage.getItem('player1');
 document.querySelector(".latestscore2").innerHTML = localStorage.getItem('latestScore2');
+document.querySelector(".player2").innerHTML = localStorage.getItem('player2');
 document.querySelector(".latestscore3").innerHTML = localStorage.getItem('latestScore3');
+document.querySelector(".player3").innerHTML = localStorage.getItem('player3');
