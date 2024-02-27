@@ -84,6 +84,10 @@ p {
 	align-items: center;
 }
 
+caption {
+	font-size: 30px;
+}
+
 .login {
 	background: rgba(128, 128, 128, 0.795);
 	height: auto;
