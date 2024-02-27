@@ -6,10 +6,10 @@ kaboom()
 loadSprite("background", "clouds.jpeg.webp");
 loadSprite("basketball", "basketball.png")
 loadSprite("hoop", "hoop.png")
+loadSprite("wall", "wall.png.webp") 
 
-scene("instructions", () => {
-
-})
+let highScore = 0;
+let score = 0;
 
 scene("game", () => {
 
@@ -17,6 +17,14 @@ scene("game", () => {
         sprite("background"),
         scale(3.3,3.8),
         pos(0, 0),
+        "wall"
+    ]);
+
+    const wall = add([
+        sprite("wall"),
+        area(),
+        scale(1.5),
+        pos(-900, 10),
     ]);
     
     const basketball = add([
@@ -26,13 +34,13 @@ scene("game", () => {
         area(),
     ])
     
-    loop(2, () => {
+    loop(1, () => {
         const hoop = add([
             sprite("hoop"),
             pos(1800, rand(100, 1000)),
             rotate(270),
             scale(.8),
-            move(LEFT, 800),
+            move(LEFT, 1600),
             area(),
             "hoop"
         ])
@@ -46,23 +54,31 @@ scene("game", () => {
         basketball.move(0, -1000)
     })
 
-    let score = 0;
     const scoreLabel = add([
         text("Score: " + score),
         pos(800, 40)
     ])
 
-    basketball.onCollide("hoop", () => {
+    basketball.onCollide("hoop", (hoop) => {
         score = score + 1;
+        destroy(hoop);
     });
+
+    wall.onCollide("hoop", (hoop) => {
+        go("lose");
+    })
 
     onUpdate(() => {
         scoreLabel.text = "Score: " + score;
+        localStorage.setItem("latestScore", score);
     });
+
 });
 
 scene("lose", (score) => {
-
+    if (score > highScore) {
+        localStorage.setItem('highScore', score)
+    }
     window.location.replace("basketflyer.html");
 
 });
