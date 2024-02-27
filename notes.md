@@ -57,3 +57,5 @@
     [element sibling] ~ [element sibling] or 
     [element sibling] + [adjecent element sibling]
     You can also select and element plus its class using [element].[class]
+    You can also select and id of a specific element using #[id]
+    You can even use pseudo selectors, for example section:hover. when you hover your mouse over section the style then applies.
