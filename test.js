@@ -8,8 +8,16 @@ loadSprite("basketball", "basketball.png")
 loadSprite("hoop", "hoop.png")
 loadSprite("wall", "wall.png.webp") 
 
+localStorage.setItem("latestScore3", localStorage.getItem("latestScore2"))
+localStorage.setItem("latestScore2", localStorage.getItem("latestScore1"))
+
 let highScore = 0;
 let score = 0;
+
+
+const highScore1 = parseInt(localStorage.getItem('highScore1')) || 0;
+const highScore2 = parseInt(localStorage.getItem('highScore2')) || 0;
+const highScore3 = parseInt(localStorage.getItem('highScore3')) || 0;
 
 scene("game", () => {
 
@@ -65,20 +73,30 @@ scene("game", () => {
     });
 
     wall.onCollide("hoop", (hoop) => {
-        go("lose");
+        go("lose", score);
     })
 
     onUpdate(() => {
         scoreLabel.text = "Score: " + score;
-        localStorage.setItem("latestScore", score);
-        if (score > localStorage.getItem('highScore')) {
-            localStorage.setItem('highScore', score)
-        }
-    });
+    });  
 
 });
 
 scene("lose", (score) => {
+    console.log(score);
+    localStorage.setItem("latestScore1", score);
+        if (score > highScore1) {
+            localStorage.setItem('highScore3', highScore2);
+            localStorage.setItem('highScore2', highScore1);
+            localStorage.setItem('highScore1', score);
+        } 
+        else if (score > highScore2) {
+            localStorage.setItem('highScore3', highScore2);
+            localStorage.setItem('highScore2', score);
+        }
+        else if (score > highScore3) {
+            localStorage.setItem('highScore3', score);
+        }
     window.location.replace("basketflyer.html");
 
 });
