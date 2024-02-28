@@ -45,7 +45,7 @@ scene("game", () => {
         sprite("basketball"),
         pos(100, 400),
         scale(.12),
-        area(),
+        area(scale(.5)),
     ])
     
     loop(1, () => {
@@ -61,11 +61,11 @@ scene("game", () => {
     })
     
     onKeyDown("down", () => {
-        basketball.move(0, 1000)
+        basketball.move(0, 1100)
     })
     
     onKeyDown("up", () => {
-        basketball.move(0, -1000)
+        basketball.move(0, -1100)
     })
 
     const scoreLabel = add([
