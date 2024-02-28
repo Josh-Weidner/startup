@@ -71,7 +71,8 @@ For this deliverable I properly styled the application into its final appearance
 
 ## JavaScript deliverable
 
-**This game is meant to be played on a computer and is only really playable on a computer** /n
+**This game is meant to be played on a computer and is only really playable on a computer**  
+
 For this deliverable I implemented by JavaScript so that the application works for a single user. I also added placeholders for future technology.
 
 - **Login** - When you press login, you are taken to the play now screen and your username is stored.
