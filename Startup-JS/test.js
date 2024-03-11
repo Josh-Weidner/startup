@@ -6,24 +6,11 @@ kaboom({
   })
 
 loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
-loadSprite("basketball", "Startup-IMG/basketball.png")
-loadSprite("hoop", "Startup-IMG/hoop.png")
-loadSprite("wall", "Startup-IMG/wall.png.webp") 
+loadSprite("basketball", "Startup-IMG/basketball.png");
+loadSprite("hoop", "Startup-IMG/hoop.png");
+loadSprite("wall", "Startup-IMG/wall.png.webp");
 
-if (localStorage.getItem('player') !== null) {
-    localStorage.setItem("latestScore3", localStorage.getItem("latestScore2"));
-    localStorage.setItem("player3", localStorage.getItem("player2"));
-    localStorage.setItem("latestScore2", localStorage.getItem("latestScore1"));
-    localStorage.setItem("player2", localStorage.getItem("player1"));
-}
-
-let highScore = 0;
 let score = 0;
-
-
-const highScore1 = parseInt(localStorage.getItem('highScore1')) || 0;
-const highScore2 = parseInt(localStorage.getItem('highScore2')) || 0;
-const highScore3 = parseInt(localStorage.getItem('highScore3')) || 0;
 
 scene("game", () => {
 
@@ -89,29 +76,39 @@ scene("game", () => {
 });
 
 scene("lose", (score) => {
-    console.log(score);
-    localStorage.setItem("player1", localStorage.getItem("player"));
-    localStorage.setItem("latestScore1", score);
-    if (localStorage.getItem('player') !== null) {
-        if (score > highScore1) {
-            localStorage.setItem('highScore3', highScore2);
-            localStorage.setItem("highPlayer3", localStorage.getItem("highPlayer2"));
-            localStorage.setItem('highScore2', highScore1);
-            localStorage.setItem("highPlayer2", localStorage.getItem("highPlayer1"));
-            localStorage.setItem('highScore1', score);
-            localStorage.setItem("highPlayer1", localStorage.getItem("player"));
-        } 
-        else if (score > highScore2) {
-            localStorage.setItem('highScore3', highScore2);
-            localStorage.setItem("highPlayer3", localStorage.getItem("highPlayer2"));
-            localStorage.setItem('highScore2', score);
-            localStorage.setItem("highPlayer2", localStorage.getItem("player"));
-        }
-        else if (score > highScore3) {
-            localStorage.setItem('highScore3', score);
-            localStorage.setItem("highPlayer3", localStorage.getItem("player"));
-        }
+    localStorage.setItem('latest', score);
+    const currentPlayer = localStorage.getItem('player');
+    const userScore = {
+        userName: currentPlayer,
+        highScore: score
     }
+
+    // update high scores
+    fetch(`/updatehigh`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(userScore)
+    });
+
+    // update recent scores
+    fetch(`/updaterecent`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(userScore)
+    });
+
+    // update users high score
+    fetch(`/${currentPlayer}/${score}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+    });
+
     window.location.replace("basketflyer.html");
 
 });

@@ -1,6 +1,13 @@
-if (localStorage.getItem('latestScore1') !== null) {
-    document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latestScore1');
-    document.querySelector(".high").innerHTML = "High Score: " + localStorage.getItem('highScore1');
+const currentUser = localStorage.getItem('player');
+
+// get current users high score
+const score = fetch(`/highscore/${currentUser}`, {
+    method: 'GET',
+});
+
+if (localStorage.getItem('latest') != null) {
+    document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
+    document.querySelector(".high").innerHTML = "High Score: " + score;
 }
 
 document.onkeydown = checkKey;

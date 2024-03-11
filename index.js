@@ -17,19 +17,26 @@ app.post('/createuser', (req, res) => {
 app.get('/highscore', (req, res) => {res.send(highScores)})
 
 // pull recent scores
-app.get('recentscores', (req, res) => {res.send(recentScores)})
+app.get('/recentscores', (req, res) => {res.send(recentScores)})
+
+// pull users high score
+app.get('/highscore/:username', (req, res) => {
+    const userName = req.params.username;
+    const user = users.find(user => user.userName = userName);
+    res.send(user.highScore);
+})
 
 // update high scores
 app.put('/updatehigh', (req, res) => {
     const score = req.body;
-    if (score.score > highScores[2].score && score.score < highScores[1].score) {
+    if (score.highScore > highScores[2].score && score.highScore < highScores[1].score) {
         highScores[2] = score;
     }
-    if (score.score > highScores[1].score && score.score < highScores[0].score) {
+    if (score.highScore > highScores[1].score && score.highScore < highScores[0].score) {
         highScores[2] = highScores[1];
         highScores[1] = score;
     }
-    if (score.score > highScores[0].score) {
+    if (score.highScore > highScores[0].score) {
         highScores[2] = highScores[1];
         highScores[1] = highScores[0];
         highScores[0] = score;
@@ -53,6 +60,7 @@ app.put('/:username/:score', (req, res) => {
     const user = users.find(user => user.userName = userName);
     if (user.highScore < score) {
         user.highScore = score;
+        res.send("user highscore updated");
     }
 })
 
@@ -72,7 +80,7 @@ let users = [];
 } 
  */
 
-let highScores = [];
+let highScores = [{userName: null, highScore: 0}, {userName: null, highScore: 0}, {userName: null, highScore: 0}];
 
 /*
  {
@@ -80,7 +88,7 @@ let highScores = [];
  }
  */
 
-let recentScores = [];
+let recentScores = [{userName: null, highScore: 0}, {userName: null, highScore: 0}, {userName: null, highScore: 0}];
 
 /*
 {
