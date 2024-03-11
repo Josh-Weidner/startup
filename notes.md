@@ -47,6 +47,7 @@
 
 ## Command to Deliver Code to Domain
     ./deployFiles.sh -k ~/Documents/cs260/cs260.pem -h basketflyer.com -s startup
+    for service: ./deployService.sh -k ~/Documents/cs260/cs260.pem -h basketflyer.com -s startup
     The last element in this command routes the deliverable to startup on the domain: startup.basketflyer.com.
 
 ## CSS
