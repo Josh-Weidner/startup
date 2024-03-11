@@ -9,6 +9,7 @@ app.use(express.json());
 // create user
 app.post('/createuser', (req, res) => {
     const newUser = req.body;
+    console.log(newUser);
     users.push(newUser);
     res.send("user created");
 })
@@ -19,29 +20,33 @@ app.get('/highscores', (req, res) => {res.send(highScores)})
 // pull recent scores
 app.get('/recentscores', (req, res) => {res.send(recentScores)})
 
-// pull users high score
-app.get('/highscore/:username', (req, res) => {
+// pull users highscore
+app.get('/highScore/:username', (req, res) => {
     const userName = req.params.username;
-    const user = users.find(user => user.userName = userName);
-    res.send(user.highScore);
+    const user = users.find(user => user.userName === userName);
+    if (user) {
+        res.send(user.highScore.toString()); // Convert to string if it's not already a string
+    } else {
+        res.status(404).send("User not found"); // Respond with a 404 status if user is not found
+    }
 })
 
 // update high scores
 app.put('/updatehigh', (req, res) => {
     const score = req.body;
-    if (score.highScore > highScores[2].score && score.highScore < highScores[1].score) {
+    if (score.highScore > highScores[2].highScore && score.highScore < highScores[1].highScore) {
         highScores[2] = score;
     }
-    if (score.highScore > highScores[1].score && score.highScore < highScores[0].score) {
+    if (score.highScore > highScores[1].highScore && score.highScore < highScores[0].highScore) {
         highScores[2] = highScores[1];
         highScores[1] = score;
     }
-    if (score.highScore > highScores[0].score) {
+    if (score.highScore > highScores[0].highScore) {
         highScores[2] = highScores[1];
         highScores[1] = highScores[0];
         highScores[0] = score;
     }
-    res.send("scores updated appropriately");
+    console.log("highscores updated appropriately");
 })
 
 // update recent score
@@ -50,17 +55,20 @@ app.put('/updaterecent', (req, res) => {
     recentScores[2] = recentScores[1];
     recentScores[1] = recentScores[0];
     recentScores[0] = score;
-    res.send("recents updated correctly");
+    console.log("recents updated correctly");
 })
 
 // update users high score
 app.put('/:username/:score', (req, res) => {
     const userName = req.params.username;
     const score = req.params.score;
-    const user = users.find(user => user.userName = userName);
-    if (user.highScore < score) {
+    const user = users.find(user => user.userName === userName);
+    if (user.highScore === undefined) {
         user.highScore = score;
-        res.send("user highscore updated");
+    }
+    else if (user.highScore < score) {
+        user.highScore = score;
+        console.log("user highscore updated");
     }
 })
 

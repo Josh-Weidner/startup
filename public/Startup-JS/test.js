@@ -75,7 +75,7 @@ scene("game", () => {
 
 });
 
-scene("lose", (score) => {
+scene("lose", async (score) => {
     localStorage.setItem('latest', score);
     const currentPlayer = localStorage.getItem('player');
     const userScore = {
@@ -91,6 +91,7 @@ scene("lose", (score) => {
         },
         body: JSON.stringify(userScore)
     });
+
 
     // update recent scores
     fetch(`/updaterecent`, {

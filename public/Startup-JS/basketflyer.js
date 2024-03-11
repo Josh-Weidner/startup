@@ -1,15 +1,3 @@
-const currentUser = localStorage.getItem('player');
-
-// get current users high score
-const score = fetch(`/highscore/${currentUser}`, {
-    method: 'GET',
-});
-
-if (localStorage.getItem('latest') != null) {
-    document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
-    document.querySelector(".high").innerHTML = "High Score: " + score;
-}
-
 document.onkeydown = checkKey;
 
 function checkKey(e) {
@@ -30,3 +18,21 @@ function checkKey(e) {
     }
 
 }
+
+const currentUser = localStorage.getItem('player');
+
+if (localStorage.getItem('latest') != " ") {
+    document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
+}    
+
+// get current users high score
+fetch(`/highScore/${currentUser}`, {method: 'GET'})
+    .then(response => {
+        return response.json();
+    })
+    .then(score => {
+        console.log(score);
+        if (score != " ") {
+            document.querySelector(".high").innerHTML = "High Score: " + score;
+        }
+    })

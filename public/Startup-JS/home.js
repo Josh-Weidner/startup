@@ -6,9 +6,10 @@ const submitName = document.querySelector("#submitname");
 submitName.addEventListener('click',  async function() {
     console.log("you are on the login screen!")
     localStorage.setItem('player', player.value);
+    localStorage.setItem('latest', " ");
     const user = {
         userName: player.value,
-        highScore: 0
+        highScore: " "
     }
     
     await fetch(`/createuser`, {
