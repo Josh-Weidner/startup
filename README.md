@@ -68,3 +68,14 @@ For this deliverable I properly styled the application into its final appearance
 - **Application elements** - Used good contrast and whitespace, that is consistant on all pages.
 - **Application text content** - Consistent fonts.
 - **Application images** - I used a logo that I generated in place of the game name on the top of the screens.
+
+## JavaScript deliverable
+
+**This game is meant to be played on a computer and is only really playable on a computer**  
+
+For this deliverable I implemented by JavaScript so that the application works for a single user. I also added placeholders for future technology.
+
+- **Login** - When you press login, you are taken to the play now screen and your username is stored.
+- **Database** - Highscores and recent scores are stored using Local Storage and are displayed on the leaderboard.
+- **WebSocket** - When a player plays, their score will instantly go to the recent scores leaderboard for all to see.
+- **Application logic** - Great interaction logic that lets you play the actual game on the play now screen.
