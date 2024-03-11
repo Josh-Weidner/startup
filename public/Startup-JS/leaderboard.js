@@ -1,15 +1,31 @@
-const high = fetch('/highscores', {method: 'GET'});
-const recent = fetch('/recentscore', {method: 'GET'});
+fetch('/highscores', { method: 'GET' })
+    .then(response => {
+        return response.json();
+    })
+    .then(highScores => {
+        document.querySelector(".highscore1").innerText = highScores[0].highScore;
+        document.querySelector(".highPlayer1").innerText = highScores[0].userName;
+        document.querySelector(".highscore2").innerText = highScores[1].highScore;
+        document.querySelector(".highPlayer2").innerText = highScores[1].userName;
+        document.querySelector(".highscore3").innerText = highScores[2].highScore;
+        document.querySelector(".highPlayer3").innerText = highScores[2].userName;
+    })
+    .catch(error => {
+        console.error('Error fetching high scores:', error);
+    });
 
-document.querySelector(".highscore1").innerHTML = high[0].highScore;
-document.querySelector(".highPlayer1").innerHTML = high[0].userName;
-document.querySelector(".highscore2").innerHTML = high[1].highScore;
-document.querySelector(".highPlayer2").innerHTML = high[1].userName;
-document.querySelector(".highscore3").innerHTML = high[2].highScore;
-document.querySelector(".highPlayer3").innerHTML = high[2].userName;
-document.querySelector(".latestscore1").innerHTML = recent[0].highScore;
-document.querySelector(".player1").innerHTML = recent[0].userName;
-document.querySelector(".latestscore2").innerHTML = recent[1].highScore;
-document.querySelector(".player2").innerHTML = recent[1].userName;
-document.querySelector(".latestscore3").innerHTML = recent[2].highScore;
-document.querySelector(".player3").innerHTML = recent[2].userName;
+fetch('/recentscores', { method: 'GET' })
+    .then(response => {
+        return response.json();
+    })
+    .then(recentScores => {
+        document.querySelector(".latestscore1").innerText = recentScores[0].highScore;
+        document.querySelector(".player1").innerText = recentScores[0].userName;
+        document.querySelector(".latestscore2").innerText = recentScores[1].highScore;
+        document.querySelector(".player2").innerText = recentScores[1].userName;
+        document.querySelector(".latestscore3").innerText = recentScores[2].highScore;
+        document.querySelector(".player3").innerText = recentScores[2].userName;
+    })
+    .catch(error => {
+        console.error('Error fetching recent scores:', error);
+    });

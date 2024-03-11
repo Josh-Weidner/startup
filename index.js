@@ -80,7 +80,11 @@ let users = [];
 } 
  */
 
-let highScores = [{userName: null, highScore: 0}, {userName: null, highScore: 0}, {userName: null, highScore: 0}];
+let highScores = [
+    {userName: "-", highScore: 0}, 
+    {userName: "-", highScore: 0}, 
+    {userName: "-", highScore: 0}
+];
 
 /*
  {
@@ -88,7 +92,11 @@ let highScores = [{userName: null, highScore: 0}, {userName: null, highScore: 0}
  }
  */
 
-let recentScores = [{userName: null, highScore: 0}, {userName: null, highScore: 0}, {userName: null, highScore: 0}];
+let recentScores = [
+    {userName: "-", highScore: 0},
+    {userName: "-", highScore: 0}, 
+    {userName: "-", highScore: 0}
+];
 
 /*
 {
