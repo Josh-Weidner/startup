@@ -14,7 +14,7 @@ app.post('/createuser', (req, res) => {
 })
 
 // pull high scores
-app.get('/highscore', (req, res) => {res.send(highScores)})
+app.get('/highscores', (req, res) => {res.send(highScores)})
 
 // pull recent scores
 app.get('/recentscores', (req, res) => {res.send(recentScores)})

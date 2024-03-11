@@ -1,12 +1,15 @@
-document.querySelector(".highscore1").innerHTML = localStorage.getItem('highScore1');
-document.querySelector(".highPlayer1").innerHTML = localStorage.getItem('highPlayer1');
-document.querySelector(".highscore2").innerHTML = localStorage.getItem('highScore2');
-document.querySelector(".highPlayer2").innerHTML = localStorage.getItem('highPlayer2');
-document.querySelector(".highscore3").innerHTML = localStorage.getItem('highScore3');
-document.querySelector(".highPlayer3").innerHTML = localStorage.getItem('highPlayer3');
-document.querySelector(".latestscore1").innerHTML = localStorage.getItem('latestScore1');
-document.querySelector(".player1").innerHTML = localStorage.getItem('player1');
-document.querySelector(".latestscore2").innerHTML = localStorage.getItem('latestScore2');
-document.querySelector(".player2").innerHTML = localStorage.getItem('player2');
-document.querySelector(".latestscore3").innerHTML = localStorage.getItem('latestScore3');
-document.querySelector(".player3").innerHTML = localStorage.getItem('player3');
+const high = fetch('/highscores', {method: 'GET'});
+const recent = fetch('/recentscore', {method: 'GET'});
+
+document.querySelector(".highscore1").innerHTML = high[0].highScore;
+document.querySelector(".highPlayer1").innerHTML = high[0].userName;
+document.querySelector(".highscore2").innerHTML = high[1].highScore;
+document.querySelector(".highPlayer2").innerHTML = high[1].userName;
+document.querySelector(".highscore3").innerHTML = high[2].highScore;
+document.querySelector(".highPlayer3").innerHTML = high[2].userName;
+document.querySelector(".latestscore1").innerHTML = recent[0].highScore;
+document.querySelector(".player1").innerHTML = recent[0].userName;
+document.querySelector(".latestscore2").innerHTML = recent[1].highScore;
+document.querySelector(".player2").innerHTML = recent[1].userName;
+document.querySelector(".latestscore3").innerHTML = recent[2].highScore;
+document.querySelector(".player3").innerHTML = recent[2].userName;
