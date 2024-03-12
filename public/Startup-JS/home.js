@@ -12,7 +12,7 @@ const options = {
     },
     body: new URLSearchParams({
         'format': 'json',
-        'url': 'https://soundcloud.com/haunu/home-resonance-slowed-blade-runner-2049-song'
+        'url': 'https://soundcloud.com/user-204876641/home-resonance-432-hz-slowed'
     })
 };
 
@@ -27,7 +27,7 @@ fetch(url, options)
         console.log(data.html);
         const soundCloud = data.html;
         const soundDiv = document.querySelector(".soundCloud");
-        soundDiv.innerHTML = soundCloud.substring(0, 65) + ' allow="autoplay"' + soundCloud.substring(65, 192) + "&auto_play=true" + soundCloud.substring(192);
+        soundDiv.innerHTML = soundCloud;
         play();
         const frame = document.querySelector("iframe");
     })
