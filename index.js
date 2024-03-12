@@ -46,7 +46,6 @@ app.put('/updatehigh', (req, res) => {
         highScores[1] = highScores[0];
         highScores[0] = score;
     }
-    console.log("highscores updated appropriately");
 })
 
 // update recent score
@@ -55,7 +54,6 @@ app.put('/updaterecent', (req, res) => {
     recentScores[2] = recentScores[1];
     recentScores[1] = recentScores[0];
     recentScores[0] = score;
-    console.log("recents updated correctly");
 })
 
 // update users high score
@@ -68,12 +66,11 @@ app.put('/:username/:score', (req, res) => {
     }
     else if (user.highScore < score) {
         user.highScore = score;
-        console.log("user highscore updated");
     }
 })
 
-// launch the server on port 3000
-const port = 3000;
+// launch the server on port 4000
+const port = 4000;
 app.listen(port, () => {
     console.log("Listening!!!");
 })

@@ -14,6 +14,34 @@ let score = 0;
 
 scene("game", () => {
 
+    // pull a cool track from soundcloud using a third party API
+    const url = 'https://soundcloud.com/oembed';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'format': 'json',
+            'url': 'https://soundcloud.com/haunu/home-resonance-slowed-blade-runner-2049-song'
+        })
+    };
+
+    fetch(url, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.html);
+            const soundCloud = data.html;
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+        
     // add([
     //     sprite("background"),
     //     scale(3.3,3.8),
