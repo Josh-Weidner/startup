@@ -8,15 +8,15 @@ Remember spending hours on end trying to beat your friends high score on Flappy 
 
 ### Design
 
-![The UI of Basket Flyer itself.](Startup-IMG/IMG_0033.PNG)
+![The UI of Basket Flyer itself.](public/Startup-IMG/IMG_0033.PNG)
 
 You can control the basketball with arrow keys and must hit the hoops as they fly across the screen.
 
-![Log In screen.](Startup-IMG/IMG_0034.PNG)
+![Log In screen.](public/Startup-IMG/IMG_0034.PNG)
 
 Log-in screen
 
-![Leader Board screen.](Startup-IMG/IMG_0035.PNG)
+![Leader Board screen.](public/Startup-IMG/IMG_0035.PNG)
 
 Up to date leaderboard and recent scores of your classmates.
 
