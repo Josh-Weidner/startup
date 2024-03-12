@@ -82,10 +82,12 @@ For this deliverable I implemented by JavaScript so that the application works f
 
 ## Service deliverable
 
+**This game is meant to be played on a computer and is only really playable on a computer**  
+
 For this deliverable I added backend endpoints that receives users and scores and returns the top 3 highs scores and recent scores.
 
-Node.js/Express HTTP service - done!
-Static middleware for frontend - done!
-Calls to third party endpoints - I used a SoundCloud API widget to put on my homescreen where you can listen to music!
-Backend service endpoints - Placeholders for login that stores the current user and their highscore on the server. Endpoints for new scores and updating leaderboard.
-Frontend calls service endpoints - I did this using the fetch function.
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - I used a SoundCloud API widget to put on my homescreen where you can listen to music!
+- **Backend service endpoints** - Placeholders for login that stores the current user and their highscore on the server. Endpoints for new scores and updating leaderboard.
+- **Frontend calls service endpoints** - I did this using the fetch function.
