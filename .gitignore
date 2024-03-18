@@ -1,4 +1,9 @@
-simon-html
-simon-css
-simon-javascript
-node_modules
+simon-html/
+simon-css/
+simon-javascript/
+simon-service/
+node_modules/
+dbConfig.json
+.DS_Store
+.vscode/
+mongoTest/
