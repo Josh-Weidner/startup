@@ -5,11 +5,13 @@ kaboom({
     background: [39, 92, 117] // The RGB code
   })
 
+loadSprite("ground", "Startup-IMG/ground.png");
 loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
 loadSprite("basketball", "Startup-IMG/basketball.png");
 loadSprite("hoop", "Startup-IMG/hoop.png");
 loadSprite("wall", "Startup-IMG/wall.png.webp");
-
+let screen_width = width()/2.344;
+const speed = width();
 let score = 0;
 
 scene("game", () => {
@@ -41,66 +43,63 @@ scene("game", () => {
         .catch(error => {
             console.error('Error fetching data:', error);
         });
-        
-    // add([
-    //     sprite("background"),
-    //     scale(3.3,3.8),
-    //     pos(0, 0),
-    //     "wall"
-    // ]);
-
+    
+    const ground = add([
+        sprite("ground"),
+        scale(0.9),
+        pos(-10, 700),
+        area(),
+        "ground",
+        body({isStatic: true})
+    ])
     const wall = add([
         sprite("wall"),
-        area(),
-        scale(1.5),
-        pos(-900, 10),
-    ]);
-    
+        scale(),
+        pos(-670,50),
+        area(scale(0.8))
+    ])
     const basketball = add([
         sprite("basketball"),
         pos(100, 400),
         scale(.12),
+        setGravity(1500),
         area(scale(.5)),
+        body()
     ])
-    
     loop(1, () => {
         const hoop = add([
             sprite("hoop"),
-            pos(1800, rand(100, 1000)),
+            pos(width()*1.1, rand(height()*0.15, height()*0.9)),
             rotate(270),
             scale(.8),
-            move(LEFT, 1600),
+            move(LEFT, speed),
             area(),
             "hoop"
-        ])
-    })
+        ]);
+    });
     
     onKeyDown("down", () => {
-        basketball.move(0, 1100)
+        basketball.jump(-600)
     })
     
     onKeyDown("up", () => {
-        basketball.move(0, -1100)
+        basketball.jump(600);
     })
 
     const scoreLabel = add([
         text("Score: " + score),
-        pos(800, 40)
+        pos(screen_width, 40)
     ])
-
     basketball.onCollide("hoop", (hoop) => {
-        score = score + 1;
+        score++;
         destroy(hoop);
     });
-
-    wall.onCollide("hoop", (hoop) => {
-        go("lose", score);
-    })
-
     onUpdate(() => {
         scoreLabel.text = "Score: " + score;
-    });  
-
+    });
+    wall.onCollide("hoop", () => {
+        go("lose", score);
+    })
 });
 
 scene("lose", async (score) => {
@@ -114,7 +113,8 @@ scene("lose", async (score) => {
     // update high scores
     fetch(`/updatehigh`, {
         method: 'PUT',
-        headers: {
+        headers:
+         {
             'content-type': 'application/json'
         },
         body: JSON.stringify(userScore)
