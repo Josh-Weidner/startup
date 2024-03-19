@@ -1,8 +1,8 @@
-simon-html/
-simon-css/
-simon-javascript/
-simon-service/
-simon-login/
+simon-html
+simon-css
+simon-javascript
+simon-service
+simon-login
 node_modules/
 dbConfig.json
 .DS_Store

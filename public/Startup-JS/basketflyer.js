@@ -30,9 +30,9 @@ fetch(`/highScore/${currentUser}`, {method: 'GET'})
     .then(response => {
         return response.json();
     })
-    .then(score => {
+    .then(highScore => {
         console.log(score);
-        if (score != " ") {
-            document.querySelector(".high").innerHTML = "High Score: " + score;
+        if (highScore != 0) {
+            document.querySelector(".high").innerHTML = "High Score: " + highScore;
         }
     })

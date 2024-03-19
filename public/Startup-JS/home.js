@@ -29,7 +29,6 @@ fetch(url, options)
         const soundCloud = data.html;
         const soundDiv = document.querySelector(".soundCloud");
         soundDiv.innerHTML = soundCloud;
-        play();
         const frame = document.querySelector("iframe");
     })
     .catch(error => {
@@ -46,11 +45,15 @@ submitName.addEventListener('click',  async function() {
         highScore: 0
     }
     
-    await fetch(`/auth/create`, {
+    const response = await fetch(`/api/auth/create`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(user)
     });
+    if (response.ok) {
+        window.location = "basketflyer.html";
+        console.log('user created');
+    }
 })

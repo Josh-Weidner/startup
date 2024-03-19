@@ -1,5 +1,6 @@
-fetch('/highscores', { method: 'GET' })
+fetch('/api/highScores', { method: 'GET' })
     .then(response => {
+        console.log(response);
         return response.json();
     })
     .then(highScores => {
@@ -14,7 +15,7 @@ fetch('/highscores', { method: 'GET' })
         console.error('Error fetching high scores:', error);
     });
 
-fetch('/recentscores', { method: 'GET' })
+fetch('/api/recentScores', { method: 'GET' })
     .then(response => {
         return response.json();
     })

@@ -105,13 +105,16 @@ scene("game", () => {
 scene("lose", async (score) => {
     localStorage.setItem('latest', score);
     const currentPlayer = localStorage.getItem('player');
+    const currentTime = new Date();
+    const formattedTime = `${currentTime.getFullYear()}-${(currentTime.getMonth() + 1).toString().padStart(2, '0')}-${currentTime.getDate().toString().padStart(2, '0')} ${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}:${currentTime.getSeconds().toString().padStart(2, '0')}`;
     const userScore = {
         userName: currentPlayer,
-        highScore: score
+        highScore: score,
+        timeStamp: formattedTime
     }
 
     // update high scores
-    fetch(`/updatehigh`, {
+    fetch(`/api/updateScores`, {
         method: 'PUT',
         headers:
          {
@@ -120,22 +123,13 @@ scene("lose", async (score) => {
         body: JSON.stringify(userScore)
     });
 
-
-    // update recent scores
-    fetch(`/updaterecent`, {
+    // update users high score
+    fetch(`/updatePlayerScore`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(userScore)
-    });
-
-    // update users high score
-    fetch(`/${currentPlayer}/${score}`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json'
-        },
     });
 
     window.location.replace("basketflyer.html");

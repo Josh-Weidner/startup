@@ -1,73 +1,115 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
+const DB = require('./database.js');
 
+const authCookieName = 'token';
 
 // forward static file
 app.use(express.static('public'));
 app.use(express.json());
+app.use(cookieParser());
+app.set('trust proxy', true);
 
-// create user
-app.post('/createuser', (req, res) => {
-    const newUser = req.body;
-    console.log(newUser);
-    users.push(newUser);
-    res.send("user created");
-})
+var apiRouter = express.Router();
+app.use('/api', apiRouter);
+  
+// createAuthorization from the given credentials
+apiRouter.post('/auth/create', async (req, res) => {
+    if (await DB.getUser(req.body.userName)) {
+        res.status(409).send({ msg: 'Existing user' });
+    } else {
+        const user = await DB.createUser(req.body.userName, req.body.password, req.body.highScore);
+        setAuthCookie(res, user.token);
+        res.send({
+            id: user._id,
+        });
+    }
+});
+  
+// loginAuthorization from the given credentials
+apiRouter.post('/auth/login', async (req, res) => {
+    const user = await DB.getUser(req.body.email);
+        if (user) {
+            if (await bcrypt.compare(req.body.password, user.password)) {
+                setAuthCookie(res, user.token);
+                res.send({ id: user._id });
+                return;
+            }
+        }
+    res.status(401).send({ msg: 'Unauthorized' });
+});
 
-// pull high scores
-app.get('/highscores', (req, res) => {res.send(highScores)})
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+});
 
-// pull recent scores
-app.get('/recentscores', (req, res) => {res.send(recentScores)})
+// Get highScores
+apiRouter.get('/highScores', async (req, res) => {
+    const scores = await DB.getHighScores();
+    res.send(scores);
+});
+
+// Get recentScores
+apiRouter.get('/recentScores', async (req, res) => {
+    const scores = await DB.getRecentScores();
+    res.send(scores);
+});
+  
+// getMe for the currently authenticated user
+app.get('/user/me', async (req, res) => {
+    authToken = req.cookies['token'];
+    const user = await collection.findOne({ token: authToken });
+    if (user) {
+        res.send({ highScore: user.highScore });
+        return;
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// secureApiRouter verifies credentials for endpoints
+var secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+    authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+});
 
 // pull users highscore
 app.get('/highScore/:username', (req, res) => {
     const userName = req.params.username;
-    const user = users.find(user => user.userName === userName);
-    if (user) {
-        res.send(user.highScore.toString()); // Convert to string if it's not already a string
-    } else {
-        res.status(404).send("User not found"); // Respond with a 404 status if user is not found
-    }
+    const highScore = DB.getUserHighScore(userName);
+    res.send(highScore);
 })
 
-// update high scores
-app.put('/updatehigh', (req, res) => {
+// update scores
+secureApiRouter.put('/updateScores', (req, res) => {
     const score = req.body;
-    if (score.highScore > highScores[2].highScore && score.highScore < highScores[1].highScore) {
-        highScores[2] = score;
-    }
-    if (score.highScore > highScores[1].highScore && score.highScore < highScores[0].highScore) {
-        highScores[2] = highScores[1];
-        highScores[1] = score;
-    }
-    if (score.highScore > highScores[0].highScore) {
-        highScores[2] = highScores[1];
-        highScores[1] = highScores[0];
-        highScores[0] = score;
-    }
-})
-
-// update recent score
-app.put('/updaterecent', (req, res) => {
-    const score = req.body;
-    recentScores[2] = recentScores[1];
-    recentScores[1] = recentScores[0];
-    recentScores[0] = score;
+    DB.addScore(score);
 })
 
 // update users high score
-app.put('/:username/:score', (req, res) => {
-    const userName = req.params.username;
-    const score = req.params.score;
-    const user = users.find(user => user.userName === userName);
-    if (user.highScore === undefined) {
-        user.highScore = score;
-    }
-    else if (user.highScore < score) {
-        user.highScore = score;
-    }
+app.put('/updatePlayerScore', (req, res) => {
+    const userScore = req.body;
+    DB.updateUserHighScore(userScore);
 })
+
+function setAuthCookie(res, authToken) {
+    res.cookie('token', authToken, {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+  }
 
 // launch the server on port 4000
 const port = 4000;
