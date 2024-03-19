@@ -69,7 +69,7 @@ scene("game", () => {
     loop(1, () => {
         const hoop = add([
             sprite("hoop"),
-            pos(1800, rand(100, 800)),
+            pos(width()*1.1, rand(height()*0.15, height()*0.9)),
             rotate(270),
             scale(.8),
             move(LEFT, speed),
