@@ -1,6 +1,7 @@
 console.log("you are on the login screen!")
 
 const player = document.querySelector("#name");
+const password = document.querySelector("#pw");
 const submitName = document.querySelector("#submitname");
 
 // pull a cool track from soundcloud using a third party API
@@ -41,10 +42,11 @@ submitName.addEventListener('click',  async function() {
     localStorage.setItem('latest', " ");
     const user = {
         userName: player.value,
-        highScore: " "
+        password: password.value,
+        highScore: 0
     }
     
-    await fetch(`/createuser`, {
+    await fetch(`/auth/create`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
