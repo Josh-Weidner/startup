@@ -1,5 +1,3 @@
-console.log("you are on the login screen!")
-
 const player = document.querySelector("#name");
 const password = document.querySelector("#pw");
 const submitName = document.querySelector("#submitname");
@@ -55,5 +53,7 @@ submitName.addEventListener('click',  async function() {
     if (response.ok) {
         window.location = "basketflyer.html";
         console.log('user created');
+    } else {
+        submitName.innerText = "Name already in use";
     }
 })

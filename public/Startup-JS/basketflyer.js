@@ -26,13 +26,21 @@ if (localStorage.getItem('latest') != " ") {
 }    
 
 // get current users high score
-fetch(`/highScore/${currentUser}`, {method: 'GET'})
-    .then(response => {
-        return response.json();
-    })
-    .then(highScore => {
-        console.log(score);
-        if (highScore != 0) {
-            document.querySelector(".high").innerHTML = "High Score: " + highScore;
+async function getHigh(currentUser) {
+    try {
+        const response = await fetch(`/api/highScore/${currentUser}`, {method: 'GET'})
+        if (!response.ok) {
+            throw new Error('response error ${response.status}');
         }
-    })
+        const highScore = await response.json();
+        console.log(highScore.highScore);
+        if (highScore.highScore != 0) {
+            document.querySelector(".high").innerHTML = "High Score: " + highScore.highScore;
+        }
+    }
+    catch(error) {
+        console.error("Error fetching highScore ", error);
+    }
+}
+
+getHigh(currentUser);

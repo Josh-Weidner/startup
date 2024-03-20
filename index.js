@@ -1,3 +1,4 @@
+const port = 4000;
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
@@ -47,6 +48,13 @@ apiRouter.delete('/auth/logout', (_req, res) => {
     res.status(204).end();
 });
 
+// pull users highscore
+apiRouter.get('/highScore/:userName', async (req, res) => {
+    const userName = req.params.userName;
+    const highScore = await DB.getUserHighScore(userName);
+    res.send({highScore});
+})
+
 // Get highScores
 apiRouter.get('/highScores', async (req, res) => {
     const scores = await DB.getHighScores();
@@ -84,13 +92,6 @@ secureApiRouter.use(async (req, res, next) => {
     }
 });
 
-// pull users highscore
-app.get('/highScore/:username', (req, res) => {
-    const userName = req.params.username;
-    const highScore = DB.getUserHighScore(userName);
-    res.send(highScore);
-})
-
 // update scores
 secureApiRouter.put('/updateScores', (req, res) => {
     const score = req.body;
@@ -112,7 +113,6 @@ function setAuthCookie(res, authToken) {
   }
 
 // launch the server on port 4000
-const port = 4000;
 app.listen(port, () => {
     console.log("Listening!!!");
 })

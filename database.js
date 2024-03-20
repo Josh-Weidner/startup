@@ -64,8 +64,8 @@ async function getRecentScores() {
   return cursor.toArray();
 }
 
-function getUserHighScore(userName) {
-  const player = userCollection.findOne(userName);
+async function getUserHighScore(userName) {
+  const player = await userCollection.findOne({ userName: userName});
   return player.highScore;
 }
 
