@@ -44,7 +44,6 @@ function addScore(userScore) {
 }
 
 async function getHighScores() {
-  console.log("we are in the database function");
   const query = { highScore: { $gt: 0 } }; // Assuming all scores are positive values
   const options = {
     sort: { highScore: -1 },
@@ -66,16 +65,21 @@ async function getRecentScores() {
 
 async function getUserHighScore(userName) {
   const player = await userCollection.findOne({ userName: userName});
+  console.log('we got users highscore', player.highScore);
   return player.highScore;
 }
 
-function updateUserHighScore(userScore) {
+async function updateUserHighScore(userScore) {
   const userName = userScore.userName
   const highScore = userScore.highScore
-  const player = userCollection.findOne({ userName: userName});
+  const player = await userCollection.findOne({ userName: userName});
   if (player.highScore < highScore) {
-    player.highScore = highScore;
+    await userCollection.updateOne(
+      { userName: userName},
+      { $set: { highScore: highScore}}
+    )
   }
+  console.log('we updated the database');
 }
 
 module.exports = {

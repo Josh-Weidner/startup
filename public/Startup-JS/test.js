@@ -113,7 +113,34 @@ scene("lose", async (score) => {
         timeStamp: formattedTime
     }
 
-    // update high scores
+    // update users high score
+    async function updatePlayerScore(userScore) {
+        try {
+            const response = await fetch(`/api/updatePlayerScore`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userScore)
+            });
+    
+            if (response.ok) {
+                // Database update was successful
+                window.location = "basketflyer.html";
+            } else {
+                // Handle error response
+                console.error('Error updating player score:', response.statusText);
+                // Optionally display an error message to the user
+            }
+        } catch (error) {
+            // Handle fetch error
+            console.error('Error updating player score:', error);
+            // Optionally display an error message to the user
+        }
+    }
+    
+
+    // update scores
     fetch(`/api/updateScores`, {
         method: 'PUT',
         headers:
@@ -122,17 +149,7 @@ scene("lose", async (score) => {
         },
         body: JSON.stringify(userScore)
     });
-
-    // update users high score
-    fetch(`/updatePlayerScore`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(userScore)
-    });
-
-    window.location.replace("basketflyer.html");
+    updatePlayerScore(userScore);
 
 });
 

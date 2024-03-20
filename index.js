@@ -55,6 +55,19 @@ apiRouter.get('/highScore/:userName', async (req, res) => {
     res.send({highScore});
 })
 
+// update users high score
+apiRouter.put('/updatePlayerScore', (req, res) => {
+    const userScore = req.body;
+    DB.updateUserHighScore(userScore);
+    res.sendStatus(200);
+})
+
+// update scores
+apiRouter.put('/updateScores', (req, res) => {
+    const score = req.body;
+    DB.addScore(score);
+})
+
 // Get highScores
 apiRouter.get('/highScores', async (req, res) => {
     const scores = await DB.getHighScores();
@@ -91,18 +104,6 @@ secureApiRouter.use(async (req, res, next) => {
         res.status(401).send({ msg: 'Unauthorized' });
     }
 });
-
-// update scores
-secureApiRouter.put('/updateScores', (req, res) => {
-    const score = req.body;
-    DB.addScore(score);
-})
-
-// update users high score
-app.put('/updatePlayerScore', (req, res) => {
-    const userScore = req.body;
-    DB.updateUserHighScore(userScore);
-})
 
 function setAuthCookie(res, authToken) {
     res.cookie('token', authToken, {
