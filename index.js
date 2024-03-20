@@ -56,9 +56,9 @@ apiRouter.get('/highScore/:userName', async (req, res) => {
 })
 
 // update users high score
-apiRouter.put('/updatePlayerScore', (req, res) => {
+apiRouter.put('/updatePlayerScore', async (req, res) => {
     const userScore = req.body;
-    DB.updateUserHighScore(userScore);
+    await DB.updateUserHighScore(userScore);
     res.sendStatus(200);
 })
 

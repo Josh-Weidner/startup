@@ -150,7 +150,6 @@ scene("lose", async (score) => {
         body: JSON.stringify(userScore)
     });
     updatePlayerScore(userScore);
-
 });
 
 go("game")
