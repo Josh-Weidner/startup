@@ -10,12 +10,11 @@ loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
 loadSprite("basketball", "Startup-IMG/basketball.png");
 loadSprite("hoop", "Startup-IMG/hoop.png");
 loadSprite("wall", "Startup-IMG/wall.png.webp");
-let screen_width = width()/2.344;
+let score_width = width()/2.344;
 const speed = width();
 let score = 0;
 
 scene("game", () => {
-
     // pull a cool track from soundcloud using a third party API
     const url = 'https://soundcloud.com/oembed';
     const options = {
@@ -46,7 +45,7 @@ scene("game", () => {
     
     const ground = add([
         sprite("ground"),
-        scale(0.9),
+        scale((width()*height())*0.00000075),
         pos(-10, 700),
         area(),
         "ground",
@@ -61,7 +60,7 @@ scene("game", () => {
     const basketball = add([
         sprite("basketball"),
         pos(100, 400),
-        scale(.12),
+        scale((width()*height())*0.00000011),
         setGravity(1500),
         area(scale(.5)),
         body()
@@ -71,7 +70,7 @@ scene("game", () => {
             sprite("hoop"),
             pos(width()*1.1, rand(height()*0.15, height()*0.9)),
             rotate(270),
-            scale(.8),
+            scale((width()*height())*0.0000007),
             move(LEFT, speed),
             area(),
             "hoop"
@@ -88,7 +87,7 @@ scene("game", () => {
 
     const scoreLabel = add([
         text("Score: " + score),
-        pos(screen_width, 40)
+        pos(score_width, 40)
     ])
     basketball.onCollide("hoop", (hoop) => {
         score++;
