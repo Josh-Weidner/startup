@@ -10,7 +10,6 @@ loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
 loadSprite("basketball", "Startup-IMG/basketball.png");
 loadSprite("hoop", "Startup-IMG/hoop.png");
 loadSprite("wall", "Startup-IMG/wall.png.webp");
-let score_width = width()/2.344;
 const speed = width();
 let score = 0;
 
@@ -46,22 +45,22 @@ scene("game", () => {
     const ground = add([
         sprite("ground"),
         scale((width()*height())*0.00000075),
-        pos(-10, 700),
+        pos(width()*-.01, height()*.87),
         area(),
         "ground",
         body({isStatic: true})
     ])
     const wall = add([
         sprite("wall"),
-        scale(),
-        pos(-670,50),
-        area(scale(0.8))
+        scale((width()*height())*0.000001),
+        pos(width()*-.65,0),
+        area()
     ])
     const basketball = add([
         sprite("basketball"),
-        pos(100, 400),
+        pos(width()*0.09, height()*.25),
         scale((width()*height())*0.00000011),
-        setGravity(1500),
+        setGravity(2000),
         area(scale(.5)),
         body()
     ])
@@ -78,21 +77,24 @@ scene("game", () => {
     });
     
     onKeyDown("down", () => {
-        basketball.jump(-600)
+        basketball.jump(-700)
     })
     
     onKeyDown("up", () => {
-        basketball.jump(600);
+        basketball.jump(700);
     })
 
     const scoreLabel = add([
         text("Score: " + score),
-        pos(score_width, 40)
+        pos(width()/2.344, 40)
     ])
     basketball.onCollide("hoop", (hoop) => {
         score++;
         destroy(hoop);
     });
+    basketball.onCollide("ground", () => {
+        basketball.jump(800);
+    })
     onUpdate(() => {
         scoreLabel.text = "Score: " + score;
     });
