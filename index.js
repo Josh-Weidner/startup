@@ -31,7 +31,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   
 // loginAuthorization from the given credentials
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await DB.getUser(req.body.email);
+    const user = await DB.getUser(req.body.userName);
         if (user) {
             if (await bcrypt.compare(req.body.password, user.password)) {
                 setAuthCookie(res, user.token);
@@ -48,26 +48,6 @@ apiRouter.delete('/auth/logout', (_req, res) => {
     res.status(204).end();
 });
 
-// pull users highscore
-apiRouter.get('/highScore/:userName', async (req, res) => {
-    const userName = req.params.userName;
-    const highScore = await DB.getUserHighScore(userName);
-    res.send({highScore});
-})
-
-// update users high score
-apiRouter.put('/updatePlayerScore', async (req, res) => {
-    const userScore = req.body;
-    await DB.updateUserHighScore(userScore);
-    res.sendStatus(200);
-})
-
-// update scores
-apiRouter.put('/updateScores', (req, res) => {
-    const score = req.body;
-    DB.addScore(score);
-})
-
 // Get highScores
 apiRouter.get('/highScores', async (req, res) => {
     const scores = await DB.getHighScores();
@@ -80,16 +60,16 @@ apiRouter.get('/recentScores', async (req, res) => {
     res.send(scores);
 });
   
-// getMe for the currently authenticated user
-app.get('/user/me', async (req, res) => {
-    authToken = req.cookies['token'];
-    const user = await collection.findOne({ token: authToken });
+// GetUser returns information about a user
+apiRouter.get('/user/:userName', async (req, res) => {
+    const user = await DB.getUser(req.params.userName);
     if (user) {
-        res.send({ highScore: user.highScore });
-        return;
+      const token = req?.cookies.token;
+      res.send({ userName: user.userName, authenticated: token === user.token });
+      return;
     }
-    res.status(401).send({ msg: 'Unauthorized' });
-});
+    res.status(404).send({ msg: 'Unknown' });
+  });
 
 // secureApiRouter verifies credentials for endpoints
 var secureApiRouter = express.Router();
@@ -105,8 +85,28 @@ secureApiRouter.use(async (req, res, next) => {
     }
 });
 
+// update users high score
+secureApiRouter.put('/updatePlayerScore', async (req, res) => {
+    const userScore = req.body;
+    await DB.updateUserHighScore(userScore);
+    res.sendStatus(200);
+})
+
+// pull users highscore
+secureApiRouter.get('/highScore/:userName', async (req, res) => {
+    const userName = req.params.userName;
+    const highScore = await DB.getUserHighScore(userName);
+    res.send({highScore});
+})
+
+// update scores
+secureApiRouter.put('/updateScores', (req, res) => {
+    const score = req.body;
+    DB.addScore(score);
+})
+
 function setAuthCookie(res, authToken) {
-    res.cookie('token', authToken, {
+    res.cookie(authCookieName, authToken, {
       secure: true,
       httpOnly: true,
       sameSite: 'strict',

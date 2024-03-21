@@ -126,10 +126,11 @@ scene("lose", async (score) => {
     
             if (response.ok) {
                 // Database update was successful
-                window.location = "basketflyer.html";
+                changeScreen();
             } else {
                 // Handle error response
                 console.error('Error updating player score:', response.statusText);
+                changeScreen();
                 // Optionally display an error message to the user
             }
         } catch (error) {
@@ -138,7 +139,6 @@ scene("lose", async (score) => {
             // Optionally display an error message to the user
         }
     }
-    
 
     // update scores
     fetch(`/api/updateScores`, {
@@ -149,7 +149,11 @@ scene("lose", async (score) => {
         },
         body: JSON.stringify(userScore)
     });
+
     updatePlayerScore(userScore);
+    function changeScreen() {
+        window.location = "basketflyer.html";
+    }    
 });
 
 go("game")

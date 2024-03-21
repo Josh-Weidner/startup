@@ -1,6 +1,10 @@
 const player = document.querySelector("#name");
 const password = document.querySelector("#pw");
-const submitName = document.querySelector("#submitname");
+const createUser = document.querySelector("#createUser");
+const login = document.querySelector("#login");
+const logout = document.querySelector("#logout");
+
+localStorage.setItem('latest', " ");
 
 // pull a cool track from soundcloud using a third party API
 const url = 'https://soundcloud.com/oembed';
@@ -33,10 +37,7 @@ fetch(url, options)
         console.error('Error fetching data:', error);
     });
 
-submitName.addEventListener('click',  async function() {
-    console.log("you are on the login screen!")
-    localStorage.setItem('player', player.value);
-    localStorage.setItem('latest', " ");
+createUser.addEventListener('click',  async function() {
     const user = {
         userName: player.value,
         password: password.value,
@@ -51,9 +52,35 @@ submitName.addEventListener('click',  async function() {
         body: JSON.stringify(user)
     });
     if (response.ok) {
+        localStorage.setItem('player', player.value);
         window.location = "basketflyer.html";
         console.log('user created');
     } else {
-        submitName.innerText = "Name already in use";
+        createUser.innerText = "Name already in use";
     }
 })
+
+login.addEventListener('click', async function() {
+    const response = await fetch(`/api/auth/login`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ userName: player.value, password: password.value})
+    });
+    if (response.ok) {
+        localStorage.setItem('player', player.value);
+        window.location = "basketflyer.html";
+        console.log('login successful');
+    } else {
+        login.innerText = "Incorrect username or password";
+    }
+})
+
+logout.addEventListener('click', async function() {
+    localStorage.clear();
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+})
+
