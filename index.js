@@ -36,6 +36,7 @@ apiRouter.post('/auth/login', async (req, res) => {
             if (await bcrypt.compare(req.body.password, user.password)) {
                 setAuthCookie(res, user.token);
                 res.send({ id: user._id });
+                console.log("login successful");
                 return;
             }
         }
