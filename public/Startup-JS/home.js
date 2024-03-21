@@ -4,8 +4,6 @@ const createUser = document.querySelector("#createUser");
 const login = document.querySelector("#login");
 const logout = document.querySelector("#logout");
 
-localStorage.setItem('latest', " ");
-
 // pull a cool track from soundcloud using a third party API
 const url = 'https://soundcloud.com/oembed';
 const options = {
@@ -52,6 +50,7 @@ createUser.addEventListener('click',  async function() {
         body: JSON.stringify(user)
     });
     if (response.ok) {
+        localStorage.clear();
         localStorage.setItem('player', player.value);
         window.location = "basketflyer.html";
         console.log('user created');
@@ -69,6 +68,7 @@ login.addEventListener('click', async function() {
         body: JSON.stringify({ userName: player.value, password: password.value})
     });
     if (response.ok) {
+        localStorage.clear();
         localStorage.setItem('player', player.value);
         window.location = "basketflyer.html";
         console.log('login successful');

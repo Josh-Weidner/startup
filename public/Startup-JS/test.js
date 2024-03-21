@@ -125,11 +125,10 @@ scene("lose", async (score) => {
     
             if (response.ok) {
                 // Database update was successful
-                changeScreen();
+                console.log("player highscore updated")
             } else {
                 // Handle error response
                 console.error('Error updating player score:', response.statusText);
-                changeScreen();
                 // Optionally display an error message to the user
             }
         } catch (error) {
@@ -149,10 +148,17 @@ scene("lose", async (score) => {
         body: JSON.stringify(userScore)
     });
 
-    updatePlayerScore(userScore);
     function changeScreen() {
         window.location = "basketflyer.html";
-    }    
+    }  
+
+    if (score > localStorage.getItem('highScore') && localStorage.getItem("player")) {
+        localStorage.setItem("highScore", score);
+        updatePlayerScore(userScore);
+        changeScreen();
+    } else {
+        changeScreen();
+    }
 });
 
 go("game")

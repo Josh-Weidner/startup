@@ -21,21 +21,26 @@ function checkKey(e) {
 
 const currentUser = localStorage.getItem('player');
 
-if (localStorage.getItem('latest') != " ") {
+if (localStorage.getItem('latest')) {
     document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
 }    
 
 // get current users high score
 async function getHigh(currentUser) {
     try {
-        const response = await fetch(`/api/highScore/${currentUser}`, {method: 'GET'})
-        if (!response.ok) {
-            throw new Error('response error ${response.status}');
-        }
-        const highScore = await response.json();
-        console.log(highScore.highScore);
-        if (highScore.highScore != 0) {
-            document.querySelector(".high").innerHTML = "High Score: " + highScore.highScore;
+        if (localStorage.getItem('highScore') == null) {
+            const response = await fetch(`/api/highScore/${currentUser}`, {method: 'GET'})
+            if (!response.ok) {
+                throw new Error('response error ${response.status}');
+            }
+            const highScore = await response.json();
+            console.log(highScore.highScore);
+            if (highScore.highScore != 0) {
+                document.querySelector(".high").innerHTML = "High Score: " + highScore.highScore;
+            }
+            localStorage.setItem("highScore", highScore.highScore);
+        } else {
+            document.querySelector(".high").innerHTML = "High Score: " + localStorage.getItem("highScore");
         }
     }
     catch(error) {
