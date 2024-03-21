@@ -91,3 +91,14 @@ For this deliverable I added backend endpoints that receives users and scores an
 - **Calls to third party endpoints** - I used a SoundCloud API widget to put on my homescreen where you can listen to music!
 - **Backend service endpoints** - Placeholders for login that stores the current user and their highscore on the server. Endpoints for new scores and updating leaderboard.
 - **Frontend calls service endpoints** - I did this using the fetch function.
+
+## DB/Login Deliverable
+
+For this deliverable I created login authentication and now store users and scores in a database.
+
+- **MongoDB Atlas database created** - done!
+- **Stores data in MongoDB** - done!
+- **User registration** - Creates a new account in the database.
+- **existing user** - Stores the users highscore under the same user if the user already exists.
+- **Use MongoDB to store credentials** - Stores all of the users credentials and cookies, als their highScore.
+- **Restricts functionality** - A highscore will not be stored in the database unless you are logged in.
