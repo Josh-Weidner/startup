@@ -1,6 +1,6 @@
 fetch('/api/highScores', { method: 'GET' })
     .then(response => {
-        console.log(response);
+        //console.log(response);
         return response.json();
     })
     .then(highScores => {
@@ -15,18 +15,18 @@ fetch('/api/highScores', { method: 'GET' })
         console.error('Error fetching high scores:', error);
     });
 
-fetch('/api/recentScores', { method: 'GET' })
-    .then(response => {
-        return response.json();
-    })
-    .then(recentScores => {
-        document.querySelector(".latestscore1").innerText = recentScores[0].highScore;
-        document.querySelector(".player1").innerText = recentScores[0].userName;
-        document.querySelector(".latestscore2").innerText = recentScores[1].highScore;
-        document.querySelector(".player2").innerText = recentScores[1].userName;
-        document.querySelector(".latestscore3").innerText = recentScores[2].highScore;
-        document.querySelector(".player3").innerText = recentScores[2].userName;
-    })
-    .catch(error => {
-        console.error('Error fetching recent scores:', error);
-    });
+// fetch('/api/recentScores', { method: 'GET' })
+//     .then(response => {
+//         return response.json();
+//     })
+//     .then(recentScores => {
+//         document.querySelector(".latestscore1").innerText = recentScores[0].highScore;
+//         document.querySelector(".player1").innerText = recentScores[0].userName;
+//         document.querySelector(".latestscore2").innerText = recentScores[1].highScore;
+//         document.querySelector(".player2").innerText = recentScores[1].userName;
+//         document.querySelector(".latestscore3").innerText = recentScores[2].highScore;
+//         document.querySelector(".player3").innerText = recentScores[2].userName;
+//     })
+//     .catch(error => {
+//         console.error('Error fetching recent scores:', error);
+//     });

@@ -3,6 +3,7 @@ simon-css
 simon-javascript
 simon-service
 simon-login
+simon-websocket
 node_modules/
 dbConfig.json
 .DS_Store

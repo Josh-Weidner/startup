@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -115,7 +116,7 @@ function setAuthCookie(res, authToken) {
   }
 
 // launch the server on port 4000
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log("Listening!!!");
 })
 
@@ -152,3 +153,5 @@ let recentScores = [
     recentScore: recentScore;
 }
  */
+
+peerProxy(httpService);

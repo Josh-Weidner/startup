@@ -90,6 +90,11 @@ a {
 	box-shadow: 2px 2px 5px black;
 }
 
+#player-messages {
+	padding-top: 0.25em;
+	opacity: 0.7;
+  }
+
 #logout:hover, #createUser:hover, #login:hover {
 	color: black;
 }

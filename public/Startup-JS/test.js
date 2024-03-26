@@ -140,6 +140,8 @@ scene("lose", async (score) => {
         }
     }
 
+    sendMsg(userScore);
+
     // update scores
     fetch(`/api/updateScores`, {
         method: 'PUT',

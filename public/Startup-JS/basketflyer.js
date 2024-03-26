@@ -1,3 +1,9 @@
+// Event messages
+const GameEndEvent = 'gameEnd';
+const GameStartEvent = 'gameStart';
+
+const currentUser = localStorage.getItem('player');
+
 document.onkeydown = checkKey;
 
 function checkKey(e) {
@@ -5,21 +11,23 @@ function checkKey(e) {
     e = e || window.event;
 
     if (e.keyCode == '38') {
+        // Let other players know a new game has started
         window.location.replace("test.html");
     }
     else if (e.keyCode == '40') {
+        // Let other players know a new game has started
         window.location.replace("test.html");
     }
     else if (e.keyCode == '37') {
+        // Let other players know a new game has started
         window.location.replace("test.html");
     }
     else if (e.keyCode == '39') {
+        // Let other players know a new game has started
         window.location.replace("test.html");
     }
 
 }
-
-const currentUser = localStorage.getItem('player');
 
 if (localStorage.getItem('latest')) {
     document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
@@ -48,4 +56,7 @@ async function getHigh(currentUser) {
     }
 }
 
+// Functionality for peer communication using
+
 getHigh(currentUser);
+// Let other players know the game has concluded
