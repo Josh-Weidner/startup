@@ -102,3 +102,12 @@ For this deliverable I created login authentication and now store users and scor
 - **existing user** - Stores the users highscore under the same user if the user already exists.
 - **Use MongoDB to store credentials** - Stores all of the users credentials and cookies, als their highScore.
 - **Restricts functionality** - A highscore will not be stored in the database unless you are logged in.
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the recent scores on the frontend in realtime.
+
+**Backend listens for WebSocket connection** - done!
+**Frontend makes WebSocket** connection - done!
+**Data sent over WebSocket** connection - done!
+**WebSocket data displayed** - All users scores display in realtime on the leaderboard screen and are socketed through on the actual game screen. I'm really proud that this is working. Way cool! Me too!!
