@@ -60,3 +60,8 @@
     You can also select and element plus its class using [element].[class]
     You can also select and id of a specific element using #[id]
     You can even use pseudo selectors, for example section:hover. when you hover your mouse over section the style then applies.
+
+## Web Framework
+    Babel is a transpiler that converts your JSX into Javascript.
+    When using JSX you break all the HTML elements into components in JSX.
+    With react you create functions that are components and you cna insert parameters to change what the component displays.
