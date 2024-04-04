@@ -2,7 +2,7 @@
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
 kaboom({
-    background: [39, 92, 117] // The RGB code
+    background: [255, 255, 255] // The RGB code
   })
 
 loadSprite("ground", "Startup-IMG/ground.png");
@@ -10,7 +10,9 @@ loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
 loadSprite("basketball", "Startup-IMG/basketball.png");
 loadSprite("hoop", "Startup-IMG/hoop.png");
 loadSprite("wall", "Startup-IMG/wall.png.webp");
-const speed = width();
+loadSprite("hand", "Startup-IMG/hand.png");
+loadSound("point", "Startup-IMG/point.wav");
+const speed = width() * 1.1;
 let score = 0;
 
 scene("game", () => {
@@ -44,7 +46,6 @@ scene("game", () => {
     
     const ground = add([
         sprite("ground"),
-        scale((width()*height())*0.00000075),
         pos(width()*-.01, height()*.87),
         area(),
         "ground",
@@ -59,8 +60,7 @@ scene("game", () => {
     const basketball = add([
         sprite("basketball"),
         pos(width()*0.09, height()*.25),
-        scale((width()*height())*0.00000011),
-        setGravity(2000),
+        setGravity(2200),
         area(scale(.5)),
         body()
     ])
@@ -69,19 +69,27 @@ scene("game", () => {
             sprite("hoop"),
             pos(width()*1.1, rand(height()*0.15, height()*0.9)),
             rotate(270),
-            scale((width()*height())*0.0000007),
             move(LEFT, speed),
             area(),
             "hoop"
         ]);
     });
+    loop(1, () => {
+        const hand = add([
+            sprite("hand"),
+            pos(width()*1.6, rand(height()*0.15, height()*0.7)),
+            move(LEFT, speed),
+            area(scale(0.5)),
+            "hand"
+        ]);
+    });
     
     onKeyDown("down", () => {
-        basketball.jump(-700)
+        basketball.jump(-800)
     })
     
     onKeyDown("up", () => {
-        basketball.jump(700);
+        basketball.jump(800);
     })
 
     const scoreLabel = add([
@@ -90,7 +98,11 @@ scene("game", () => {
     ])
     basketball.onCollide("hoop", (hoop) => {
         score++;
+        play("point");
         destroy(hoop);
+    });
+    basketball.onCollide("hand", () => {
+        go("lose", score)
     });
     basketball.onCollide("ground", () => {
         basketball.jump(800);
