@@ -1,4 +1,4 @@
-const port = 4000;
+const port = 3000;
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
