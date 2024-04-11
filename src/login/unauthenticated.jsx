@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 import React from 'react';
 
 export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState(props.userName);
   const [password, setPassword] = React.useState('');
-  const [displayError, setDisplayError] = React.useState(null);
+  const navigate = useNavigate();
 
   async function loginUser() {
     login(`/api/auth/login`);
@@ -24,6 +26,7 @@ export function Unauthenticated(props) {
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
       props.onLogin(userName);
+      navigate('/playNow');
     } else {
       alert("Incorrect username or password");
     }
@@ -40,6 +43,7 @@ export function Unauthenticated(props) {
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
       props.onLogin(userName);
+      navigate('/playNow');
     } else {
       const body = await response.json();
       alert("Name already in use");

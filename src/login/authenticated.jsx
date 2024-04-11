@@ -1,11 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 
 import './authenticated.css';
 
 export function Authenticated(props) {
-  const navigate = useNavigate();
 
   function logout() {
     fetch(`/api/auth/logout`, {
@@ -16,19 +13,17 @@ export function Authenticated(props) {
       })
       .finally(() => {
         localStorage.removeItem('userName');
+        localStorage.removeItem('latest');
         props.onLogout();
       });
   }
 
   return (
-    <div>
+    <>
       <div className='playerName'>{props.userName}</div>
-      <button variant='primary' onClick={() => navigate('/play')}>
-        Play
-      </button>
-      <button type="button" id="logout" variant='secondary' onClick={() => logout()}>
+      <button type="button" id="logout" onClick={() => logout()}>
         Logout
       </button>
-    </div>
+    </>
   );
 }
