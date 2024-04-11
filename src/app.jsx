@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, NavLink, Route, Routes, Navigate } from "react-router-dom";
 import { Login } from "./login/login";
 import { Play } from "./play/play";
+import { Game } from "./play/game.jsx";
 import { Scores }from "./scores/scores";
 import { AuthState } from './login/authState';
 import './app.css';
@@ -95,11 +96,12 @@ function App() {
                 }}
               />} exact />
             <Route path='/playNow' element={<Play />} exact />
-            <Route path='/leaderboard' element={<Scores/>} exact />
+            <Route path='/leaderboard' element={<Scores />} exact />
+            <Route path='/game' element={<Game />} exact />
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </main>
-        <hr />
+        
         <footer>
           <div className="footer">
             <span className="text-reset">Josh Weidner</span>

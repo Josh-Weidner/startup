@@ -20,7 +20,10 @@ header {
 }
 
 footer {
-  height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  height: 70px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -70,10 +73,11 @@ menu {
 	text-align: center;
 }
 
-iframe {
+#soundcloud {
 	width: 800px;
 	height: 60px;
-  padding-left: 37vh;
+    padding-left: 37vh;
+    box-shadow: 5px 5px 20px #275C75;
 }
 
 a {
@@ -125,10 +129,6 @@ a {
 	color: white;
 }
 
-iframe {
-	box-shadow: 5px 5px 20px #275C75;
-}
-
 a:hover {
 	color: black;
 }
@@ -136,7 +136,7 @@ a:hover {
 main {
 	display: flex;
 	flex: .75;
-	height: 68vh;
+	height: 66vh;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;

@@ -2,7 +2,7 @@
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
 kaboom({
-    background: [39, 92, 117] // The RGB code
+    background: [0, 0, 0, 0] // The RGB code
   })
 
 loadSprite("ground", "Startup-IMG/ground.png");
@@ -14,33 +14,6 @@ const speed = width();
 let score = 0;
 
 scene("game", () => {
-    // pull a cool track from soundcloud using a third party API
-    const url = 'https://soundcloud.com/oembed';
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            'format': 'json',
-            'url': 'https://soundcloud.com/haunu/home-resonance-slowed-blade-runner-2049-song'
-        })
-    };
-
-    fetch(url, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data.html);
-            const soundCloud = data.html;
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
     
     const ground = add([
         sprite("ground"),
@@ -104,8 +77,13 @@ scene("game", () => {
 });
 
 scene("lose", async (score) => {
+    if (localStorage.getItem('playCount') != null) {
+        const count = parseInt(localStorage.getItem('playCount'));
+        localStorage.setItem('playCount', count + 1);
+    }
+    else {localStorage.setItem('playCount', 1)}
     localStorage.setItem('latest', score);
-    const currentPlayer = localStorage.getItem('player');
+    const currentPlayer = localStorage.getItem('userName');
     const currentTime = new Date();
     const formattedTime = `${currentTime.getFullYear()}-${(currentTime.getMonth() + 1).toString().padStart(2, '0')}-${currentTime.getDate().toString().padStart(2, '0')} ${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}:${currentTime.getSeconds().toString().padStart(2, '0')}`;
     const userScore = {
@@ -152,16 +130,9 @@ scene("lose", async (score) => {
         body: JSON.stringify(userScore)
     });
 
-    function changeScreen() {
-        window.location = "basketflyer.html";
-    }  
-
     if (score > localStorage.getItem('highScore') && localStorage.getItem("player")) {
         localStorage.setItem("highScore", score);
         updatePlayerScore(userScore);
-        changeScreen();
-    } else {
-        changeScreen();
     }
 });
 

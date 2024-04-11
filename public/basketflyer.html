@@ -1,74 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BasketFlyer</title>
-    <link rel="icon" href="Startup-IMG/BasketFlyer.png">
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="Startup-CSS/main.css" />
-    <script type="module" src="Startup-JS/basketflyer.js"></script>
-  </head>
-  <body>
-    <header>
-      <div><img src=Startup-IMG/BasketFlyer.png></div>
-
-      <!-- Navigation elements -->
-      <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <div class="div">
-            <a href="index.html">Login</a>
-          </div>
-          <div class="div">
-            <a href="basketflyer.html">Play Now</a>
-          </div>
-          <div class="div">
-            <a href="leaderboard.html">Leaderboard</a>
-          </div>
-          <!-- <li><a href="about.html">About</a></li> -->
-        </menu>
-      </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-    </header>
-
-    <main>
-      <div id="background-wrap">
-        <div class="x1">
-            <div class="cloud"></div>
-        </div>
-  
-        <div class="x2">
-            <div class="cloud"></div>
-        </div>
-  
-        <div class="x3">
-            <div class="cloud"></div>
-        </div>
-  
-        <div class="x4">
-            <div class="cloud"></div>
-        </div>
-  
-        <div class="x5">
-            <div class="cloud"></div>
-        </div>
-      </div>
-      <div id="player-messages"></div>
-      <div class="login">
-        <h2 class="latest">Get the basketball to the hoop without getting blocked.</h2>
-        <h2 class="high">Use the up and down arrows to move the basketball with gravity.</h2>
-        <h2>Press an arrow to begin!</h2>
-      </div>
-    </main>
-
-    <footer>
-      <hr />
-      <span class="text-reset">Joshua Weidner</span>
-      <br />
-      <a href="https://github.com/Josh-Weidner">GitHub</a>
-    </footer>
-  </body>
+<html>
+    <body>
+        <script type="module" src="Startup-JS/websocket.js"></script>
+        <script type="module" src="./game.js"></script>
+    </body>
 </html>
