@@ -24,14 +24,11 @@ footer {
     bottom: 0;
     left: 0;
   height: 70px;
-  display: flex;
-  flex-direction: row;
   width: 100%;
 }
 
 .footer {
-  padding-left: 10px;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 h1 {
@@ -71,13 +68,6 @@ menu {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-}
-
-#soundcloud {
-	width: 800px;
-	height: 60px;
-    padding-left: 37vh;
-    box-shadow: 5px 5px 20px #275C75;
 }
 
 a {

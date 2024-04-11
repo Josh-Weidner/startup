@@ -5,76 +5,115 @@ kaboom({
     background: [0, 0, 0, 0] // The RGB code
   })
 
-loadSprite("ground", "Startup-IMG/ground.png");
-loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
-loadSprite("basketball", "Startup-IMG/basketball.png");
-loadSprite("hoop", "Startup-IMG/hoop.png");
-loadSprite("wall", "Startup-IMG/wall.png.webp");
-const speed = width();
-let score = 0;
-
-scene("game", () => {
-    
-    const ground = add([
-        sprite("ground"),
-        scale((width()*height())*0.00000075),
-        pos(width()*-.01, height()*.87),
-        area(),
-        "ground",
-        body({isStatic: true})
-    ])
-    const wall = add([
-        sprite("wall"),
-        scale((width()*height())*0.000001),
-        pos(width()*-.65,0),
-        area()
-    ])
-    const basketball = add([
-        sprite("basketball"),
-        pos(width()*0.09, height()*.25),
-        scale((width()*height())*0.00000011),
-        setGravity(2000),
-        area(scale(.5)),
-        body()
-    ])
-    loop(1, () => {
-        const hoop = add([
-            sprite("hoop"),
-            pos(width()*1.1, rand(height()*0.15, height()*0.9)),
-            rotate(270),
-            scale((width()*height())*0.0000007),
-            move(LEFT, speed),
-            area(),
-            "hoop"
-        ]);
-    });
-    
-    onKeyDown("down", () => {
-        basketball.jump(-700)
-    })
-    
-    onKeyDown("up", () => {
-        basketball.jump(700);
-    })
-
-    const scoreLabel = add([
-        text("Score: " + score),
-        pos(width()/2.344, 40)
-    ])
-    basketball.onCollide("hoop", (hoop) => {
-        score++;
-        destroy(hoop);
-    });
-    basketball.onCollide("ground", () => {
-        basketball.jump(800);
-    })
-    onUpdate(() => {
-        scoreLabel.text = "Score: " + score;
-    });
-    wall.onCollide("hoop", () => {
-        go("lose", score);
-    })
-});
+  loadSprite("ground", "Startup-IMG/ground.png");
+  loadSprite("background", "Startup-IMG/clouds.jpeg.webp");
+  loadSprite("basketball", "Startup-IMG/basketball.png");
+  loadSprite("hoop", "Startup-IMG/hoop.png");
+  loadSprite("wall", "Startup-IMG/wall.png.webp");
+  loadSprite("hand", "Startup-IMG/hand.png");
+  loadSound("point", "Startup-IMG/point.wav");
+  const speed = width() * 1.1;
+  let score = 0;
+  
+  scene("game", () => {
+      // pull a cool track from soundcloud using a third party API
+      const url = 'https://soundcloud.com/oembed';
+      const options = {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: new URLSearchParams({
+              'format': 'json',
+              'url': 'https://soundcloud.com/haunu/home-resonance-slowed-blade-runner-2049-song'
+          })
+      };
+  
+      fetch(url, options)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log(data.html);
+              const soundCloud = data.html;
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+          });
+      
+      const ground = add([
+          sprite("ground"),
+          pos(width()*-.01, height()*.87),
+          area(),
+          "ground",
+          body({isStatic: true})
+      ])
+      const wall = add([
+          sprite("wall"),
+          scale((width()*height())*0.000001),
+          pos(width()*-.65,0),
+          area()
+      ])
+      const basketball = add([
+          sprite("basketball"),
+          pos(width()*0.09, height()*.25),
+          setGravity(2200),
+          area(scale(.5)),
+          body()
+      ])
+      loop(1, () => {
+          const hoop = add([
+              sprite("hoop"),
+              pos(width()*1.1, rand(height()*0.15, height()*0.9)),
+              rotate(270),
+              move(LEFT, speed),
+              area(),
+              "hoop"
+          ]);
+      });
+      loop(1, () => {
+          const hand = add([
+              sprite("hand"),
+              pos(width()*1.6, rand(height()*0.15, height()*0.7)),
+              move(LEFT, speed),
+              area(scale(0.5)),
+              "hand"
+          ]);
+      });
+      
+      onKeyDown("down", () => {
+          basketball.jump(-800)
+      })
+      
+      onKeyDown("up", () => {
+          basketball.jump(800);
+      })
+  
+      const scoreLabel = add([
+          text("Score: " + score),
+          pos(width()/2.344, 40),
+      ])
+      basketball.onCollide("hoop", (hoop) => {
+          score++;
+          play("point");
+          destroy(hoop);
+      });
+      basketball.onCollide("hand", () => {
+          go("lose", score)
+      });
+      basketball.onCollide("ground", () => {
+          basketball.jump(800);
+      })
+      onUpdate(() => {
+          scoreLabel.text = "Score: " + score;
+      });
+      wall.onCollide("hoop", () => {
+          go("lose", score);
+      })
+  });
 
 scene("lose", async (score) => {
     if (localStorage.getItem('playCount') != null) {

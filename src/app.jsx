@@ -40,7 +40,6 @@ function App() {
         const soundCloud = data.html;
         const soundDiv = document.querySelector(".soundCloud");
         soundDiv.innerHTML = soundCloud;
-        const frame = document.querySelector("iframe");
       })
       .catch(error => {
         console.error('Error fetching data:', error);
