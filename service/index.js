@@ -91,6 +91,7 @@ secureApiRouter.use(async (req, res, next) => {
 secureApiRouter.put('/updatePlayerScore', async (req, res) => {
     const userScore = req.body;
     await DB.updateUserHighScore(userScore);
+    console.log("player score has been updated" + userScore);
     res.sendStatus(200);
 })
 

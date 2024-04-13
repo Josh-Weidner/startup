@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import './authenticated.css';
+
 import React from 'react';
 
 export function Unauthenticated(props) {
@@ -25,6 +27,7 @@ export function Unauthenticated(props) {
     });
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
+      localStorage.setItem('playCount', 0);
       props.onLogin(userName);
       navigate('/playNow');
     } else {
@@ -42,6 +45,7 @@ export function Unauthenticated(props) {
     });
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
+      localStorage.setItem('playCount', 0);
       props.onLogin(userName);
       navigate('/playNow');
     } else {

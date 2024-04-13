@@ -129,13 +129,14 @@ scene("lose", async (score) => {
         timeStamp: formattedTime
     }
 
-    if (localStorage.getItem('playCount') != null) {
+    if (localStorage.getItem('playCount') != 0) {
         const count = parseInt(localStorage.getItem('playCount'));
         localStorage.setItem('playCount', count + 1);
     }
     else {
         localStorage.setItem('playCount', 1);
     }
+
     localStorage.setItem('latest', score);
 
     window.sendMsg = function (event) {
@@ -145,6 +146,7 @@ scene("lose", async (score) => {
     // update users high score
     async function updatePlayerScore(userScore) {
         try {
+            console.log("we are going to update the database");
             const response = await fetch(`/api/updatePlayerScore`, {
                 method: 'PUT',
                 headers: {
@@ -180,7 +182,7 @@ scene("lose", async (score) => {
         body: JSON.stringify(userScore)
     });
 
-    if (score > localStorage.getItem('highScore') && localStorage.getItem("player")) {
+    if (score > localStorage.getItem('highScore') && localStorage.getItem("userName")) {
         localStorage.setItem("highScore", score);
         updatePlayerScore(userScore);
     }

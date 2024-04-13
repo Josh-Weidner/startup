@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './authenticated.css';
+
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
 import { AuthState } from './authState';

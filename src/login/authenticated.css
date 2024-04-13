@@ -7,4 +7,69 @@
 #logout {
 	padding: 20px;
 }
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+}
+
+#login {
+	padding: 10px;
+	border-radius: 15px;
+	margin-top: 8px;
+	width: 250px;
+	color: white;
+	background-color: #275C75;
+	border: 1px black;
+	box-shadow: 2px 2px 5px black;
+}
+
+#player-messages {
+	padding-top: 0.25em;
+	opacity: 0.7;
+  }
+
+#logout:hover, #createUser:hover, #login:hover {
+	color: black;
+}
+
+#title {
+	color: #f77140;
+	text-shadow: 0px 2px 5px black;
+	width: auto;
+	height: auto;
+	border: 10px;
+}
+
+#logout, #createUser {
+	border: none;
+	box-shadow: none;
+	background: none;
+	color: white;
+}
+
+input {
+	margin: 5px;
+	padding: 5px;
+	width: 40%;
+	border-radius: 10px;
+}
+
+button {
+	box-shadow: 4px 4px 3px rgb(62, 60, 60);
+	margin: 5px;
+}
+
+.center {
+	text-align: center;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50%;
+	width: 400px;
+	flex-direction: column;
+}
   

@@ -38,10 +38,10 @@ export function Play() {
                     }
                     const highScore = await response.json();
                     console.log(highScore.highScore);
-                    if (highScore.highScore !== 0) {
+                    if (highScore.highScore !== null) {
                         document.querySelector(".high").innerHTML = "High Score: " + highScore.highScore;
+                        localStorage.setItem("highScore", highScore.highScore);
                     }
-                    localStorage.setItem("highScore", highScore.highScore);
                 } else {
                     document.querySelector(".high").innerHTML = "High Score: " + localStorage.getItem("highScore");
                 }
