@@ -116,7 +116,7 @@ For this deliverable I used webSocket to update the recent scores on the fronten
 
 For this deliverable I converted my application over to React.
 
-- **Bundled and Transpiled** - done!
-- **Components** - Login, play now screen, and leaderboard are all components.
-- **Router** routing between login, playNow, and leaderboard screen.
-- **Hooks** - Utilize use effect, use state on all of my components.
+- **Bundled using Vite** - done!
+- **Multiple Functional React Components** - Login, play now screen, and leaderboard are all components.
+- **React Router** routing between login, playNow, and leaderboard screen.
+- **React Hooks** - Utilize use effect, use state on all of my components.
