@@ -15,7 +15,7 @@ kaboom({
   loadSprite("wall", "Startup-IMG/wall.png.webp");
   loadSprite("hand", "Startup-IMG/hand.png");
   loadSound("point", "Startup-IMG/point.wav");
-  const speed = width() * 1.1;
+  let speed = width() * .5;
   let score = 0;
   
   scene("game", () => {
@@ -68,20 +68,20 @@ kaboom({
           area(scale(.5)),
           body()
       ])
-      loop(1, () => {
+      loop(1.5, () => {
           const hoop = add([
               sprite("hoop"),
-              pos(width()*1.1, rand(height()*0.15, height()*0.9)),
+              pos(width(), rand(height()*0.15, height()*0.9)),
               rotate(270),
               move(LEFT, speed),
               area(),
               "hoop"
           ]);
       });
-      loop(1, () => {
+      loop(1.5, () => {
           const hand = add([
               sprite("hand"),
-              pos(width()*1.6, rand(height()*0.15, height()*0.7)),
+              pos(width()*1.4, rand(height()*0.15, height()*0.7)),
               move(LEFT, speed),
               area(scale(0.5)),
               "hand"
@@ -102,6 +102,7 @@ kaboom({
       ])
       basketball.onCollide("hoop", (hoop) => {
           score++;
+            speed = speed * 1.05;
           play("point");
           destroy(hoop);
       });
