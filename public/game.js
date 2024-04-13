@@ -1,6 +1,9 @@
 // import kaboom lib
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
 
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
 kaboom({
     background: [0, 0, 0, 0] // The RGB code
   })
@@ -46,8 +49,9 @@ kaboom({
       
       const ground = add([
           sprite("ground"),
-          pos(width()*-.01, height()*.87),
+          pos(0, height()),
           area(),
+          scale(2),
           "ground",
           body({isStatic: true})
       ])
@@ -116,12 +120,6 @@ kaboom({
   });
 
 scene("lose", async (score) => {
-    if (localStorage.getItem('playCount') != null) {
-        const count = parseInt(localStorage.getItem('playCount'));
-        localStorage.setItem('playCount', count + 1);
-    }
-    else {localStorage.setItem('playCount', 1)}
-    localStorage.setItem('latest', score);
     const currentPlayer = localStorage.getItem('userName');
     const currentTime = new Date();
     const formattedTime = `${currentTime.getFullYear()}-${(currentTime.getMonth() + 1).toString().padStart(2, '0')}-${currentTime.getDate().toString().padStart(2, '0')} ${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}:${currentTime.getSeconds().toString().padStart(2, '0')}`;
@@ -129,6 +127,19 @@ scene("lose", async (score) => {
         userName: currentPlayer,
         highScore: score,
         timeStamp: formattedTime
+    }
+
+    if (localStorage.getItem('playCount') != null) {
+        const count = parseInt(localStorage.getItem('playCount'));
+        localStorage.setItem('playCount', count + 1);
+    }
+    else {
+        localStorage.setItem('playCount', 1);
+    }
+    localStorage.setItem('latest', score);
+
+    window.sendMsg = function (event) {
+        socket.send(JSON.stringify(event));
     }
 
     // update users high score

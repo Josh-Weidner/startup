@@ -100,7 +100,7 @@ function App() {
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </main>
-        
+        <hr />
         <footer>
           <div className="footer">
             <span className="text-reset">Josh Weidner</span>
