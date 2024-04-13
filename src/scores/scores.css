@@ -21,4 +21,16 @@ th {
 
 caption {
 	font-size: 30px;
+	text-decoration: underline;
+	margin-bottom: 20px;
+	
+}
+
+caption.highscore {
+	color: #f77140;
+	text-shadow: 0px 2px 5px black;
+}
+
+img {
+	width: 25px;
 }

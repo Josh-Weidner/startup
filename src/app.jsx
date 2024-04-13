@@ -50,7 +50,7 @@ function App() {
       <BrowserRouter>
         <header>
           <div>
-            <img src={logo} alt="BasketFlyer Logo" />
+            <img className="basketflyer" src={logo} alt="BasketFlyer Logo" />
           </div>
           <nav>
             <menu>
@@ -100,14 +100,16 @@ function App() {
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </main>
-        
+
         <footer>
           <div className="footer">
             <span className="text-reset">Josh Weidner</span>
             <br />
             <a href="https://github.com/Josh-Weidner/startup">GitHub</a>
           </div>
-          <div className="soundCloud"></div>
+          <div className="soundContainer">
+            <div className="soundCloud"></div>
+          </div>
         </footer>
       </BrowserRouter>
   );

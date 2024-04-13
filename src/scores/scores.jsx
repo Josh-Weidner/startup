@@ -85,7 +85,7 @@ export function Scores() {
         <main>
             <div className="login">
                 <table className="table">
-                    <caption>High Scores</caption>
+                    <caption className='highscore'>High Scores</caption>
                     <tbody>
                         <tr>
                             <th>#</th>
@@ -94,7 +94,7 @@ export function Scores() {
                         </tr>
                         {highScores.slice(0, 3).map((score, index) => (
                             <tr key={index}>
-                                <td>{index + 1}</td>
+                                <td>{index === 0 ? <img src="/gold.png" alt="Gold Medal" /> : index === 1 ? <img src="/silver.png" alt="Silver Medal" /> : index === 2 ? <img src="/bronze.png" alt="Bronze Medal" /> : index + 1}</td>
                                 <td className={`highPlayer${index + 1}`}>{score.userName}</td>
                                 <td className={`highscore${index + 1}`}>{score.highScore}</td>
                             </tr>

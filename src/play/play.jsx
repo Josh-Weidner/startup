@@ -25,7 +25,7 @@ export function Play() {
 
     useEffect(() => {
         if (localStorage.getItem('latest')) {
-            document.querySelector(".latest").innerHTML = "Latest Score: " + localStorage.getItem('latest');
+            document.querySelector(".latest").innerHTML = "Recent Score: " + localStorage.getItem('latest');
         }
 
         async function getHigh() {

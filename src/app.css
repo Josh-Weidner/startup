@@ -23,15 +23,22 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-  height: 70px;
-  width: 100%;
+  	height: 70px;
+  	width: 100%;
+	display: flex;
+	flex-direction: row;
 }
 
 .footer {
   padding: 10px;
+  width: 100px;
 }
 
-img {
+span {
+	width: 100px;
+}
+
+img.basketflyer {
 	height: 150px;
 	width: 150px;
 	justify-content: center;
@@ -108,6 +115,22 @@ h2 {
 	text-align: center;
 	padding: 10px;
 	margin: 10px;
+}
+
+.soundCloud iframe{
+	height: 60px;
+	width: 600px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 2px rgb(62, 60, 60);
+}
+
+.soundContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #background-wrap {
