@@ -171,8 +171,6 @@ scene("lose", async (score) => {
         }
     }
 
-    sendMsg(userScore);
-
     // update scores
     fetch(`/api/updateScores`, {
         method: 'PUT',
@@ -184,6 +182,7 @@ scene("lose", async (score) => {
     });
 
     if (score > localStorage.getItem('highScore') && localStorage.getItem("userName")) {
+        sendMsg(userScore);
         localStorage.setItem("highScore", score);
         updatePlayerScore(userScore);
     }
