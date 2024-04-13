@@ -111,3 +111,12 @@ For this deliverable I used webSocket to update the recent scores on the fronten
 - **Frontend makes WebSocket** connection - done!
 - **Data sent over WebSocket** connection - done!
 - **WebSocket data displayed** - All users scores display in realtime on the leaderboard screen and are socketed through on the actual game screen. I'm really proud that this is working. Way cool! Me too!!
+
+## WebSocket deliverable
+
+For this deliverable I converted my application over to React.
+
+- **Bundled using Vite** - done!
+- **Multiple Functional React Components** - Login, play now screen, and leaderboard are all components.
+- **React Router** routing between login, playNow, and leaderboard screen.
+- **React Hooks** - Utilize use effect, use state on all of my components.
