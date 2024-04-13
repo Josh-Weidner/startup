@@ -29,6 +29,7 @@ export function Game() {
         {`
           header {
             display: none;
+            height: 50px;
           }
 
           main {

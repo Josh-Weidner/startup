@@ -68,6 +68,7 @@ function App() {
         </header>
 
         <main>
+          <div className="score"></div>
           <div id="background-wrap">
             <div className="x1">
               <div className="cloud"></div>

@@ -98,7 +98,7 @@ kaboom({
   
       const scoreLabel = add([
           text("Score: " + score),
-          pos(width()/2.344, 40),
+          pos(width()/2.2, 40),
       ])
       basketball.onCollide("hoop", (hoop) => {
           score++;

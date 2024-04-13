@@ -133,6 +133,20 @@ h2 {
 	transform: translateX(-50%);
 }
 
+.score {
+	width: 275px;
+	height: 65px;
+	position: fixed;
+	left: 50%;
+	bottom: 90.5%;
+	background:rgba(128, 128, 128, 0.795);
+	transform: translateX(-50%);
+	border-radius: 25px;
+	border: 1px solid black;
+	box-shadow: 4px 4px 3px rgb(62, 60, 60);
+	z-index: -1;
+}
+
 #background-wrap {
     bottom: 0;
 	left: 0;
@@ -140,7 +154,7 @@ h2 {
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: -1;
+	z-index: -2;
 }
 
 
