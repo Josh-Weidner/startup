@@ -68,7 +68,7 @@ kaboom({
           area(scale(.5)),
           body()
       ])
-      loop(1.5, () => {
+      loop(1, () => {
           const hoop = add([
               sprite("hoop"),
               pos(width(), rand(height()*0.15, height()*0.9)),
@@ -78,10 +78,10 @@ kaboom({
               "hoop"
           ]);
       });
-      loop(1.5, () => {
+      loop(1, () => {
           const hand = add([
               sprite("hand"),
-              pos(width()*1.4, rand(height()*0.15, height()*0.7)),
+              pos(width()*1.25, rand(height()*0.15, height()*0.7)),
               move(LEFT, speed),
               area(scale(0.5)),
               "hand"
@@ -102,7 +102,9 @@ kaboom({
       ])
       basketball.onCollide("hoop", (hoop) => {
           score++;
-            speed = speed * 1.05;
+          if (score < 40) {
+            speed = speed * 1.025;
+          }
           play("point");
           destroy(hoop);
       });
@@ -171,8 +173,6 @@ scene("lose", async (score) => {
         }
     }
 
-    sendMsg(userScore);
-
     // update scores
     fetch(`/api/updateScores`, {
         method: 'PUT',
@@ -184,6 +184,7 @@ scene("lose", async (score) => {
     });
 
     if (score > localStorage.getItem('highScore') && localStorage.getItem("userName")) {
+        sendMsg(userScore);
         localStorage.setItem("highScore", score);
         updatePlayerScore(userScore);
     }
