@@ -71,7 +71,7 @@ kaboom({
       loop(1, () => {
           const hoop = add([
               sprite("hoop"),
-              pos(width(), rand(height()*0.15, height()*0.9)),
+              pos(width(), rand(height(), height()*.35)),
               rotate(270),
               move(LEFT, speed),
               area(),

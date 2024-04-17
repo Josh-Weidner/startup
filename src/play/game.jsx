@@ -35,6 +35,10 @@ export function Game() {
           main {
             height: 90vh;
           }
+
+          .soundCloud {
+            display: none;
+          }
         `}
       </style>
         <iframe className="game" src='basketflyer.html' scrolling="no" frameBorder="0"></iframe>
