@@ -65,3 +65,23 @@
     Babel is a transpiler that converts your JSX into Javascript.
     When using JSX you break all the HTML elements into components in JSX.
     With react you create functions that are components and you cna insert parameters to change what the component displays.
+
+
+final review
+-Which of the following is NOT true about Linux Daemon? Cannot fork other processes.
+-Why is hashing stored passwords important? security
+-HTTP status codes in the 300 range are for? Content redirects or caching.
+-What does the command "NPM install ws" Not do? Adds template code for websockets to your JavaScriptt
+-Port 80 is reserved for? HTTP
+-What is NOT a standard HTTP header? Language
+-Given the following code what will console.log print? CLient:Server:Hello
+-What will component A initiallt display? tacofish
+-What component wil the URL "/burger" render? B
+-Cookies allow: A server to store data on the client
+-What is NOT a purpose of JSX? To combine CSS, HTML, and JavaScript
+-What document matches this MongoDB query? { name: "Walke", score: -55}
+-Which Express middleware will match this fetch request? app.delete(/fav\/(.*)/, () => {})
+-For the request [GET] /fav/george what is logged? Paul georage John
+-You can use fetch in front-end and back-end code. True
+-What value does webSocket add to HTTP? It is peer to peer instad of client to server
+
